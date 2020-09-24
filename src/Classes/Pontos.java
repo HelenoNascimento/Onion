@@ -22,5 +22,8 @@ public class Pontos {
 	public void setValor_ponto(int valor_ponto) {
 		this.valor_ponto = valor_ponto;
 	}
+	
+	
+	
 
 }
