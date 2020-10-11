@@ -1,4 +1,4 @@
-package Classes;
+package br.edu.facear.entity;
 
 public class Historico {
 

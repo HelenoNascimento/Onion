@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Classes.Jogador;
+import br.edu.facear.entity.Jogador;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -99,7 +99,7 @@ public class Tela_cadastro extends JFrame {
 				jogador.setEmail(txt_email.getText());
 				listadejogador.add(jogador);
 				//for(int cont = 0;cont < listadejogador.size();cont++){
-					//lista.addElement(jogador.getNome()+"      "+jogador.getIdade()+"    "+jogador.getEmail()+ "   "+jogador.getPontuacao());
+					lista.addElement(jogador.getNome()+"      "+jogador.getIdade()+"    "+jogador.getEmail()+ "   "+jogador.getPontuacao());
 				//	lista.addElement(listadejogador.get(cont).getNome()+"    "+listadejogador.get(cont).getIdade());
 					
 				//lista.set(index, nome);

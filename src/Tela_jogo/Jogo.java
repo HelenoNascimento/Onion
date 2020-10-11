@@ -30,7 +30,7 @@ public class Jogo extends JFrame {
 	private int n=0;
 	private int numero=0;
 	private int acerto=1;
-	public JButton btn_1;
+	 public JButton btn_1;
 	private JButton btn_2;
 	private JButton btn_3;
 	private JButton btn_4;
@@ -203,7 +203,7 @@ public class Jogo extends JFrame {
 		
 		
 		
-		final JButton btn_1 = new JButton("");
+		//final JButton btn_1 = new JButton("");
 		btn_1.setBackground(Color.red);
 		btn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -245,9 +245,9 @@ public class Jogo extends JFrame {
 		});
 		btn_1.setBounds(35, 30, 117, 66);
 		contentPane.add(btn_1);
-		vermelho=btn_1;
+		//vermelho=btn_1;
 		
-		final JButton btn_2 = new JButton("");
+	//	final JButton btn_2 = new JButton("");
 		btn_2.setBackground(Color.YELLOW);
 		btn_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -271,7 +271,7 @@ public class Jogo extends JFrame {
 		btn_2.setBounds(192, 30, 117, 66);
 		contentPane.add(btn_2);
 		amarelo=btn_2;
-		final JButton btn_3 = new JButton("") ;
+		//final JButton btn_3 = new JButton("") ;
 		btn_3.setBackground(Color.GREEN);
 		btn_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -294,7 +294,7 @@ public class Jogo extends JFrame {
 		btn_3.setBounds(35, 109, 117, 66);
 		contentPane.add(btn_3);
 		verde=btn_3;
-		final JButton btn_4 = new JButton("");
+		//final JButton btn_4 = new JButton("");
 		btn_4.setBackground(Color.BLUE);
 		btn_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Classes.Jogador;
+import br.edu.facear.entity.Jogador;
 
 import javax.swing.JList;
 import javax.swing.JLabel;
