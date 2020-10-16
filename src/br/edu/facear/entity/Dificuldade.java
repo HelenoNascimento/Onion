@@ -7,6 +7,16 @@ public class Dificuldade {
 	private int pontos;
 	
 	private int tempo;
+	
+	private String descricao;
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
 	public int getTempo() {
 		return tempo;
@@ -35,5 +45,12 @@ public class Dificuldade {
 	
 	public void test() {
 	}
+
+	@Override
+	public String toString() {
+		return "Dificuldade [cod_dificuldade=" + cod_dificuldade + ", pontos=" + pontos + ", tempo=" + tempo
+				+ ", descricao=" + descricao + "]";
+	}
+	
 
 }

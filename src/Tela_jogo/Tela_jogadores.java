@@ -22,7 +22,7 @@ public class Tela_jogadores extends Tela_cadastro {
 
 	public void listajogadores(){
 		
-		//lista.addElement(jogador.getNome()+"      "+jogador.getIdade()+"    "+jogador.getEmail()+ "   "+jogador.getPontuacao());
+		lista.addElement(jogador.getNome()+"      "+jogador.getIdade()+"    "+jogador.getEmail()+ "   "+jogador.getPontuacao());
 		lista.addElement(listadejogador.get(0).getNome());
 	}
 

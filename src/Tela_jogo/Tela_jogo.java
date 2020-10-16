@@ -14,6 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controler.ControleJogo;
+import java.awt.Dialog.ModalExclusionType;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class Tela_jogo extends JFrame {
 
@@ -22,16 +25,20 @@ public class Tela_jogo extends JFrame {
 	private JButton btn2 = new JButton("");
 	private JButton btn3 = new JButton("");
 	private JButton btn4 = new JButton("");
+	private JLabel lblSuaVez = new JLabel("Sua Vez!!");
 	String[] array_aux = new String[8];
 	JButton[] botoes = {btn1,btn2 , btn3 , btn4};
 	ArrayList <Integer> lista = new ArrayList();
 	ArrayList <Integer> MaquinaLista = new ArrayList();
 	ControleJogo controle = new ControleJogo();
+	
 	int contadorVez = 0;
 	int numero;
 	int vezJogar = 0;
 	int controlaVezJogador = 0;
 	int num = 0;
+	
+	
 	
 	/**
 	 * Launch the application.
@@ -62,7 +69,6 @@ public class Tela_jogo extends JFrame {
 		array_aux[6] = "0";
 		array_aux[7] = "0";*/
 		array_aux[0] = "1";
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 514, 356);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -85,8 +91,10 @@ public class Tela_jogo extends JFrame {
 						System.out.println("entrou");
 						ControlaVez();
 						System.out.println("errou ");
+						
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
+						controle.Vida(1);
 					}
 					
 				}
@@ -121,6 +129,7 @@ public class Tela_jogo extends JFrame {
 						System.out.println("errou ");
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
+						controle.Vida(1);
 					}
 					
 				}
@@ -152,6 +161,7 @@ public class Tela_jogo extends JFrame {
 						System.out.println("errou ");
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
+						controle.Vida(1);
 					}
 					
 				}
@@ -182,6 +192,7 @@ public class Tela_jogo extends JFrame {
 						System.out.println("errou ");
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
+						controle.Vida(1);
 					}
 					
 				}
@@ -242,6 +253,8 @@ public class Tela_jogo extends JFrame {
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				lblSuaVez.setVisible(false);
+				
 				System.out.println("");
 				System.out.print("Maquina lista");
 				for (int i = 0; i < MaquinaLista.size(); i++) {	
@@ -252,10 +265,21 @@ public class Tela_jogo extends JFrame {
 				for (int i = 0; i < lista.size(); i++) {	
            		 System.out.print(lista.get(i));
            	 }
+				
 			}
 		});
 		btnNewButton_1.setBounds(238, 267, 89, 23);
 		contentPane.add(btnNewButton_1);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(389, 58, 81, 66);
+		contentPane.add(lblNewLabel);
+		
+		
+		lblSuaVez.setFont(new Font("Verdana", Font.PLAIN, 16));
+		lblSuaVez.setBounds(22, 232, 140, 24);
+		contentPane.add(lblSuaVez);
+		
 	}
 	
 public void Pisca_Botoes(JButton e) {
@@ -293,7 +317,7 @@ public void Pisca_Botoes(JButton e) {
 			
 			if (vezJogar == 1) {
 				System.out.println("vez Maquina");
-				
+			
 				
 				
 				if(num == 0) {
@@ -305,6 +329,7 @@ public void Pisca_Botoes(JButton e) {
 				new Thread(new Runnable() {
 		            @Override
 		            public void run() {
+		            	
 		            	 for (int i = 0; i < MaquinaLista.size(); i++) {
 		            		 System.out.println(MaquinaLista.get(i));
 		            	 }
@@ -337,22 +362,26 @@ public void Pisca_Botoes(JButton e) {
 				
 			}else if(vezJogar ==2){
 				System.out.println("Vez Jogador");
+				
 				new Thread(new Runnable() {
 		            @Override
 		            public void run() {
+		            	
 		            	 for (int i = 0; i < MaquinaLista.size(); i++) {
 		            		 System.out.println(MaquinaLista.get(i));
 		            	 }
 		               
 		                try {
+		                	
 		                    Thread.sleep(controle.Dificuldade());
-		                   
+		                
 		                    Thread.sleep(controle.Dificuldade());
 		                    for (int i = 0; i < lista.size(); i++) {
 
 		                        if (lista.get(i) == null) {
 		                            break;
 		                        } else {
+		                           
 		                        	Pisca_Botoes(botoes[(lista.get(i))]);
 		                        }
 		                        Thread.sleep(controle.Dificuldade());
