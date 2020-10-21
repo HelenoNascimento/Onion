@@ -1,10 +1,22 @@
 package br.edu.facear.entity;
 
+import java.util.Date;
+
 public class Historico {
+
+	private int cod_historico;
+	
+	public int getCod_historico() {
+		return cod_historico;
+	}
+
+	public void setCod_historico(int cod_historico) {
+		this.cod_historico = cod_historico;
+	}
 
 	private int cod_jogador;
 	
-	private int date;
+	private String date;
 	
 	private int N_sequencia;
 	
@@ -20,11 +32,11 @@ public class Historico {
 		this.cod_jogador = cod_jogador;
 	}
 
-	public int getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(int date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -51,6 +63,8 @@ public class Historico {
 	public void setPontos(int pontos) {
 		Pontos = pontos;
 	}
+
+
 
 	
 }

@@ -2,6 +2,15 @@ package br.edu.facear.entity;
 
 public class Jogador {
 	
+	int cod_jogador;
+	
+	public int getCod_jogador() {
+		return cod_jogador;
+	}
+
+	public void setCod_jogador(int cod_jogador) {
+		this.cod_jogador = cod_jogador;
+	}
 	private String nome;
 
 	public String getNome() {
@@ -21,13 +30,13 @@ public class Jogador {
 		this.idade = idade;
 	}
 	
-		private String pontuacao;
+		private int pontuacao;
 
-		public String getPontuacao() {
+		public int getPontuacao() {
 			return pontuacao;
 		}
 
-		public void setPontuacao(String pontuacao) {
+		public void setPontuacao(int pontuacao) {
 			this.pontuacao = pontuacao;
 		}
 		

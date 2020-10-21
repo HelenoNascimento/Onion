@@ -2,21 +2,27 @@ package Tela_jogo;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controler.ControleJogo;
-import java.awt.Dialog.ModalExclusionType;
-import javax.swing.JLabel;
-import java.awt.Font;
+import br.edu.facear.dao.HistoricoDAO;
+import br.edu.facear.dao.JogadorDAO;
+import br.edu.facear.entity.Historico;
+import br.edu.facear.entity.Jogador;
 
 public class Tela_jogo extends JFrame {
 
@@ -25,13 +31,16 @@ public class Tela_jogo extends JFrame {
 	private JButton btn2 = new JButton("");
 	private JButton btn3 = new JButton("");
 	private JButton btn4 = new JButton("");
-	private JLabel lblSuaVez = new JLabel("Sua Vez!!");
+	public static JLabel lblSuaVez = new JLabel("Sua Vez!!");
 	String[] array_aux = new String[8];
 	JButton[] botoes = {btn1,btn2 , btn3 , btn4};
 	ArrayList <Integer> lista = new ArrayList();
 	ArrayList <Integer> MaquinaLista = new ArrayList();
+	Jogador jogador = new Jogador();
+	Historico historico = new Historico ();
 	ControleJogo controle = new ControleJogo();
-	
+	JogadorDAO jogadordao = new JogadorDAO();
+	HistoricoDAO historicodao = new HistoricoDAO();
 	int contadorVez = 0;
 	int numero;
 	int vezJogar = 0;
@@ -69,6 +78,10 @@ public class Tela_jogo extends JFrame {
 		array_aux[6] = "0";
 		array_aux[7] = "0";*/
 		array_aux[0] = "1";
+		jogador.setEmail("Teste@gemail.com");
+		jogador.setIdade("15");
+		jogador.setNome("Tiago");
+		jogador.setCod_jogador(10);
 		setBounds(100, 100, 514, 356);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -95,6 +108,12 @@ public class Tela_jogo extends JFrame {
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
 						controle.Vida(1);
+						int pont = array_aux.length;
+						jogador.setPontuacao(contadorVez);
+						jogadordao.Salvar(jogador);
+						SalvaHistorico();
+						contadorVez =0;
+						
 					}
 					
 				}
@@ -130,6 +149,11 @@ public class Tela_jogo extends JFrame {
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
 						controle.Vida(1);
+						int pont = array_aux.length;
+						jogador.setPontuacao(contadorVez);
+						jogadordao.Salvar(jogador);
+						SalvaHistorico();
+						contadorVez =0;
 					}
 					
 				}
@@ -162,6 +186,11 @@ public class Tela_jogo extends JFrame {
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
 						controle.Vida(1);
+						int pont = array_aux.length;
+						jogador.setPontuacao(contadorVez);
+						jogadordao.Salvar(jogador);
+						SalvaHistorico();
+						contadorVez =0;
 					}
 					
 				}
@@ -193,6 +222,11 @@ public class Tela_jogo extends JFrame {
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
 						controle.Vida(1);
+						int pont = array_aux.length;
+						jogador.setPontuacao(contadorVez);
+						jogadordao.Salvar(jogador);
+						SalvaHistorico();
+						contadorVez =0;
 					}
 					
 				}
@@ -281,6 +315,25 @@ public class Tela_jogo extends JFrame {
 		contentPane.add(lblSuaVez);
 		
 	}
+	public void SalvaHistorico() {
+		Date data = new Date(System.currentTimeMillis());
+		java.util.Date d = new Date();
+		
+
+		String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+		
+		
+		String testedata = dStr.toString();
+		historico.setCod_Dificuldade(2);
+		historico.setCod_historico(1);
+		historico.setCod_jogador(5);
+		historico.setDate(testedata);
+		historico.setN_sequencia(contadorVez-1);
+		historico.setPontos(contadorVez*2);
+		historicodao.Salvar(historico);
+		
+		
+	}
 	
 public void Pisca_Botoes(JButton e) {
 		
@@ -317,9 +370,9 @@ public void Pisca_Botoes(JButton e) {
 			
 			if (vezJogar == 1) {
 				System.out.println("vez Maquina");
-			
+				lblSuaVez.setVisible(false);
 				
-				
+				contadorVez =0;
 				if(num == 0) {
 					num++;
 				Random gerador = new Random();
@@ -363,6 +416,7 @@ public void Pisca_Botoes(JButton e) {
 			}else if(vezJogar ==2){
 				System.out.println("Vez Jogador");
 				
+				lblSuaVez.setVisible(true);
 				new Thread(new Runnable() {
 		            @Override
 		            public void run() {

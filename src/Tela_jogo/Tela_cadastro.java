@@ -1,22 +1,21 @@
 package Tela_jogo;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import br.edu.facear.entity.Jogador;
-
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.awt.event.ActionEvent;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import br.edu.facear.dao.JogadorDAO;
+import br.edu.facear.entity.Jogador;
 
 public class Tela_cadastro extends JFrame {
 	 Jogador jogador = new Jogador();
@@ -26,6 +25,8 @@ public class Tela_cadastro extends JFrame {
 	private JTextField txt_email;
 	public DefaultListModel lista;
 	ArrayList  <Jogador> listadejogador= new ArrayList();
+	JogadorDAO jogadordao = new JogadorDAO();
+	private JTextField txt_codigo;
 
 	/**
 	 * Launch the application.
@@ -56,30 +57,30 @@ public class Tela_cadastro extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNome = new JLabel("Nome");
-		lblNome.setBounds(46, 25, 46, 14);
+		lblNome.setBounds(36, 58, 46, 14);
 		contentPane.add(lblNome);
 		
 		txt_nome = new JTextField();
-		txt_nome.setBounds(102, 22, 86, 20);
+		txt_nome.setBounds(92, 55, 86, 20);
 		contentPane.add(txt_nome);
 		txt_nome.setColumns(10);
 		
 		JLabel lblIdade = new JLabel("Idade");
-		lblIdade.setBounds(46, 62, 46, 14);
+		lblIdade.setBounds(36, 95, 46, 14);
 		contentPane.add(lblIdade);
 		
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(46, 97, 46, 14);
+		lblEmail.setBounds(36, 130, 46, 14);
 		contentPane.add(lblEmail);
 		
 		txt_idade = new JTextField();
-		txt_idade.setBounds(102, 59, 86, 20);
+		txt_idade.setBounds(92, 92, 86, 20);
 		contentPane.add(txt_idade);
 		txt_idade.setColumns(10);
 		
 		txt_email = new JTextField();
 		txt_email.setColumns(10);
-		txt_email.setBounds(102, 94, 86, 20);
+		txt_email.setBounds(92, 127, 86, 20);
 		contentPane.add(txt_email);
 		
 		
@@ -91,16 +92,21 @@ public class Tela_cadastro extends JFrame {
 				
 				String nome;
 				String idade;
+				
+				int codigo;
+				codigo =Integer.parseInt(txt_codigo.getText());
 				nome = (txt_nome.getText());
 				jogador.setNome(nome);
+				jogador.setCod_jogador(codigo);
 				
 				idade = (txt_idade.getText());
 				jogador.setIdade(idade);
 				jogador.setEmail(txt_email.getText());
 				listadejogador.add(jogador);
 				//for(int cont = 0;cont < listadejogador.size();cont++){
-					lista.addElement(jogador.getNome()+"      "+jogador.getIdade()+"    "+jogador.getEmail()+ "   "+jogador.getPontuacao());
+					lista.addElement(jogador.getCod_jogador()+"      "+jogador.getNome()+"      "+jogador.getIdade()+"    "+jogador.getEmail()+ "   "+jogador.getPontuacao());
 				//	lista.addElement(listadejogador.get(cont).getNome()+"    "+listadejogador.get(cont).getIdade());
+					jogadordao.Salvar(jogador);
 					
 				//lista.set(index, nome);
 				txt_nome.setText(null);
@@ -134,5 +140,14 @@ public class Tela_cadastro extends JFrame {
 		});
 		btnJ_jogadores.setBounds(450, 58, 89, 23);
 		contentPane.add(btnJ_jogadores);
+		
+		txt_codigo = new JTextField();
+		txt_codigo.setColumns(10);
+		txt_codigo.setBounds(92, 24, 86, 20);
+		contentPane.add(txt_codigo);
+		
+		JLabel lbl_cod = new JLabel("Codigo");
+		lbl_cod.setBounds(36, 27, 46, 14);
+		contentPane.add(lbl_cod);
 	}
 }

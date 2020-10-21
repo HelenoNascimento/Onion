@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
 encoding//src/Model/Jogador.java=UTF-8
+encoding//src/br/edu/facear/dao/HistoricoDAO.java=UTF-8
+encoding//src/br/edu/facear/dao/JogadorDAO.java=UTF-8

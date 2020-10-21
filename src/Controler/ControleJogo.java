@@ -1,5 +1,7 @@
 package Controler;
 
+import javax.swing.JOptionPane;
+
 import Tela_jogo.Tela_inicial;
 
 public class ControleJogo {
@@ -50,9 +52,14 @@ public class ControleJogo {
 				System.out.println("total vida "+vidatotal);
 				if(vidatotal == 0 ) {
 					System.out.println("acabooo");
+					JOptionPane.showMessageDialog(null,"aaaa");
+					Tela_jogo.Tela_jogo.lblSuaVez.setVisible(false);
+					//Tela_jogo.
 				}
 				return vidatotal;
 			}
+			
+			//public void 
 			
 		}
 
