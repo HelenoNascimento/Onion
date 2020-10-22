@@ -23,11 +23,11 @@ public class Tela_cadastro extends JFrame {
 	private JTextField txt_nome;
 	private JTextField txt_idade;
 	private JTextField txt_email;
-	public DefaultListModel lista;
+	public static DefaultListModel lista;
 	ArrayList  <Jogador> listadejogador= new ArrayList();
 	JogadorDAO jogadordao = new JogadorDAO();
 	private JTextField txt_codigo;
-
+	
 	/**
 	 * Launch the application.
 	 */

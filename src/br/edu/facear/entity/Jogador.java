@@ -8,6 +8,12 @@ public class Jogador {
 		return cod_jogador;
 	}
 
+	@Override
+	public String toString() {
+		return "Jogador [cod_jogador=" + cod_jogador + ", nome=" + nome + ", idade=" + idade + ", pontuacao="
+				+ pontuacao + ", email=" + email + "]";
+	}
+
 	public void setCod_jogador(int cod_jogador) {
 		this.cod_jogador = cod_jogador;
 	}
