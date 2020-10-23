@@ -1,6 +1,5 @@
 package Tela_jogo;
 
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,14 +8,15 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 
 import Controler.ControleDificuldade;
 import Controler.ControleJogo;
+import br.edu.facear.dao.JogadorDAO;
 import br.edu.facear.entity.Dificuldade;
-import javax.swing.DefaultComboBoxModel;
 
 public class Tela_inicial extends JFrame {
 	private Tela_cadastro Tela_cadastro = new Tela_cadastro();
@@ -29,6 +29,8 @@ public class Tela_inicial extends JFrame {
 	 ControleDificuldade cd = new ControleDificuldade();
 	 ControleJogo cj = new ControleJogo();
 	 Dificuldade df = new Dificuldade();
+	 JogadorDAO jgdao = new JogadorDAO();
+	 private JTextField txt_jogador;
 	 
 	 //String dificuldade = null;
 	/**
@@ -71,34 +73,38 @@ public class Tela_inicial extends JFrame {
 		JButton btn_jogar = new JButton("Jogar");
 		btn_jogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				 dificu = String.valueOf(comboBox.getSelectedItem());
-				Tela_jogo.setVisible(true);
+				// NA TELA JOGO MOSTRA QUAL É O JOGADOR
+				Tela_jogo.lblqualjogador.setText(jgdao.BuscaJogador(txt_jogador.getText()));
+				 dificu = String.valueOf(comboBox.getSelectedItem()); // SELECIONA A DIFICULDADE
+				Tela_jogo.setVisible(true); // ABRE A TELA JOGO
 				cj.pegaDificuldade(dificu);
 				ControleJogo.dificuldadee = dificu;
 				
 			}
 		});
-		btn_jogar.setBounds(129, 61, 89, 23);
+		btn_jogar.setBounds(50, 58, 119, 23);
 		contentPane.add(btn_jogar);
 		
 		JButton btn_cadastrar = new JButton("Cadastrar");
 		btn_cadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// ABRE A TELA CADASTRO
 				Tela_cadastro.setVisible(true);
 			}
 		});
-		btn_cadastrar.setBounds(129, 114, 89, 23);
+		btn_cadastrar.setBounds(50, 116, 119, 23);
 		contentPane.add(btn_cadastrar);
 		
 		JButton btnJogadores = new JButton("Jogadores");
 		btnJogadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				// ABRE A TELA JOGADORES
 				Tela_jogadores.setVisible(true);
 			}
 			
 		});
-		btnJogadores.setBounds(129, 162, 89, 23);
+		btnJogadores.setBounds(50, 169, 119, 23);
 		contentPane.add(btnJogadores);
 		
 		//comboBox = 
@@ -107,6 +113,15 @@ public class Tela_inicial extends JFrame {
 		comboBox.setToolTipText("aaa\r\naaa\r\naa");
 		comboBox.setBounds(282, 96, 102, 23);
 		contentPane.add(comboBox);
+		
+		JLabel lblNewLabel = new JLabel("Qual jogador Teste");
+		lblNewLabel.setBounds(273, 173, 111, 14);
+		contentPane.add(lblNewLabel);
+		
+		txt_jogador = new JTextField();
+		txt_jogador.setBounds(270, 198, 86, 20);
+		contentPane.add(txt_jogador);
+		txt_jogador.setColumns(10);
 		comboBox.addItem("Facil");
 		comboBox.addItem("Normal");
 		comboBox.addItem("Dificil");
@@ -121,12 +136,4 @@ public class Tela_inicial extends JFrame {
 			}*/
 		
 		}
-	
-	
-	//public String pegaDificuldade() {
-		
-	//	Object a = comboBox.getSelectedItem();
-	//	dificuldade = a.toString();
-		//return dificuldade;
-	//}
 }

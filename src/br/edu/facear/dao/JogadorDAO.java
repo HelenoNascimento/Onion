@@ -4,10 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 
+
+import Tela_jogo.Tela_Historico;
 import Tela_jogo.Tela_jogadores;
 import br.edu.facear.entity.Jogador;
 
@@ -52,6 +58,8 @@ public class JogadorDAO {
 			
 		}
 		
+		
+		
 		public void ListarJogadores() {
 			for(int i =0 ;i<10; i++) {
 				try {
@@ -82,10 +90,40 @@ public class JogadorDAO {
 					listadejogador.add(jg);
 				//	lista.addElement( jg );
 					Tela_jogadores.lista.addElement(jg.getCod_jogador()+"      "+jg.getNome()+"               "+jg.getIdade()+"               "+jg.getEmail()+ "          "+jg.getPontuacao());
-					
+					//Tela_Historico.array.add(jg);
 				} catch (IOException Erro) {
 					//JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
 				}
 			}
 		}
+		
+		
+		public String BuscaJogador(String joga) {
+			String numjogador = null;
+			// Tratamento de Erros
+			try {
+				// Solicita ao usu�rio que informe qual o arquivo deseja
+				// abrir.
+				String arquivo = joga;
+				
+				// Inst�ncia de um Objeto da Class java(BufferedReader
+				// "Para Leitura do Arquivo"), que Inst�ncia um Objeto da
+				// Class java(FileReader) referenciando o arquivo a ser
+				// aberto.
+				BufferedReader br = new BufferedReader(
+						new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\Jogadores\\\\" + arquivo + ".txt"));
+
+				// Ler o conte�do do arquivo e exibe nos JTextField.
+				numjogador = br.readLine();
+				numjogador = br.readLine();
+				//tfNome.setText(br.readLine());
+				//tfEmail.setText(br.readLine());
+
+			} catch (IOException Erro) {
+				JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+			}
+			
+			return numjogador;
+		}
+		
 }

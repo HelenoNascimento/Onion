@@ -27,15 +27,22 @@ import br.edu.facear.entity.Jogador;
 public class Tela_jogo extends JFrame {
 
 	private JPanel contentPane;
+	
+	//botoes que demonstro as cores para ser jogado
 	private JButton btn1 = new JButton("");
 	private JButton btn2 = new JButton("");
 	private JButton btn3 = new JButton("");
 	private JButton btn4 = new JButton("");
+	
+	//botoes que demonstro quantas vida o jogador tem
+	public static JButton vida1 = new JButton("");
+	public static JButton vida2 = new JButton("");
+	public static JButton vida3 = new JButton("");
 	public static JLabel lblSuaVez = new JLabel("Sua Vez!!");
 	String[] array_aux = new String[8];
 	JButton[] botoes = {btn1,btn2 , btn3 , btn4};
-	ArrayList <Integer> lista = new ArrayList();
-	ArrayList <Integer> MaquinaLista = new ArrayList();
+	ArrayList <Integer> lista = new ArrayList(); //sequencia do jogador
+	ArrayList <Integer> MaquinaLista = new ArrayList(); // sequencia da maquina
 	Jogador jogador = new Jogador();
 	Historico historico = new Historico ();
 	ControleJogo controle = new ControleJogo();
@@ -46,6 +53,10 @@ public class Tela_jogo extends JFrame {
 	int vezJogar = 0;
 	int controlaVezJogador = 0;
 	int num = 0;
+	private final JLabel lblJogador = new JLabel("Jogador");
+	public static JLabel lblqualjogador = new JLabel("");
+	private final JLabel lblqualdificuldade = new JLabel("Dificuldade: ");
+	public static JLabel lbldificuldade = new JLabel("");
 	
 	
 	
@@ -69,20 +80,13 @@ public class Tela_jogo extends JFrame {
 	 * Create the frame.
 	 */
 	public Tela_jogo() {
-		/*array_aux[0] = "2";
-		array_aux[1] = "1";
-		array_aux[2] = "3";
-		array_aux[3] = "0";
-		array_aux[4] = "0";
-		array_aux[5] = "0";
-		array_aux[6] = "0";
-		array_aux[7] = "0";*/
+
 		array_aux[0] = "1";
 		jogador.setEmail("Teste@gemail.com");
 		jogador.setIdade("15");
 		jogador.setNome("Tiago");
 		jogador.setCod_jogador(10);
-		setBounds(100, 100, 514, 356);
+		setBounds(100, 100, 536, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -94,20 +98,20 @@ public class Tela_jogo extends JFrame {
 				//array_aux[contadorVez] = "0";
 				System.out.println("controle" +controlaVezJogador);
 				lista.add(0);
-				int test = MaquinaLista.size();
+				int test = MaquinaLista.size(); // SEQUENCIA NA QUAL A MAQUINA GEROU
 				if(controlaVezJogador == test) {
 					vezJogar = 1;
 					if(lista.equals(MaquinaLista)) {
-						Random gerador = new Random();
-						numero = gerador.nextInt(4);
-						MaquinaLista.add(numero);
+						Random gerador = new Random(); 
+						numero = gerador.nextInt(4);// GERA UM NOVO NUMERO ATÉ O 4
+						MaquinaLista.add(numero); // ADICIONA ESSE NUMERO NA SEQUENCIA DA MAQUINA
 						System.out.println("entrou");
-						ControlaVez();
+						ControlaVez(); // METEDO Q CONTROLA DE QUEM É A VEZ
 						System.out.println("errou ");
 						
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
-						controle.Vida(1);
+						controle.Vida(1); // CASO O JOGADOR ERRAR ELE PERDE UMA VIDA
 						int pont = array_aux.length;
 						jogador.setPontuacao(contadorVez);
 						jogadordao.Salvar(jogador);
@@ -127,7 +131,7 @@ public class Tela_jogo extends JFrame {
 		
 
 		btn1.setBackground(new Color(0, 100, 0));
-		btn1.setBounds(48, 37, 114, 77);
+		btn1.setBounds(76, 70, 114, 77);
 		contentPane.add(btn1);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -164,7 +168,7 @@ public class Tela_jogo extends JFrame {
 		
 		
 		btn2.setBackground(new Color(153, 0, 0));
-		btn2.setBounds(235, 37, 114, 77);
+		btn2.setBounds(213, 70, 114, 77);
 		contentPane.add(btn2);
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -200,7 +204,7 @@ public class Tela_jogo extends JFrame {
 		
 		
 		btn3.setBackground(new Color(0, 0, 153));
-		btn3.setBounds(48, 144, 114, 77);
+		btn3.setBounds(76, 158, 114, 77);
 		contentPane.add(btn3);
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -236,7 +240,7 @@ public class Tela_jogo extends JFrame {
 		
 		
 		btn4.setBackground(new Color(255, 204, 0));
-		btn4.setBounds(238, 144, 111, 77);
+		btn4.setBounds(216, 158, 111, 77);
 		contentPane.add(btn4);
 		
 		JButton btnNewButton = new JButton("Iniciar");
@@ -245,43 +249,12 @@ public class Tela_jogo extends JFrame {
 				contadorVez = 0;
 				vezJogar = 1;
 				
-				ControlaVez();/*
-				new Thread(new Runnable() {
-		            @Override
-		            public void run() {
-		            	 for (int i = 0; i < MaquinaLista.size(); i++) {
-		            		 System.out.println(MaquinaLista.get(i));
-		            	 }
-		               
-		                try {
-		                    Thread.sleep(controle.Dificuldade());
-		                   
-		                    Thread.sleep(controle.Dificuldade());
-		                    for (int i = 0; i < lista.size(); i++) {
-
-		                        if (lista.get(i) == null) {
-		                            break;
-		                        } else {
-		                        	Pisca_Botoes(botoes[(lista.get(i))]);
-		                        }
-		                        Thread.sleep(controle.Dificuldade());
-		                       
-		                    }
-		                    Thread.sleep(controle.Dificuldade());
-		                    
-		                } catch (InterruptedException e1) {
-		                    // TODO Auto-generated catch block
-		                    JOptionPane.showMessageDialog(null, e1.getMessage());
-		                }
-
-		            }
-		        }).start();*/
-				//lista = null;
+				ControlaVez(); //metodo que controla de quem é a vez
 			}
 				
 			
 		});
-		btnNewButton.setBounds(42, 267, 89, 23);
+		btnNewButton.setBounds(36, 306, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("New button");
@@ -311,8 +284,44 @@ public class Tela_jogo extends JFrame {
 		
 		
 		lblSuaVez.setFont(new Font("Verdana", Font.PLAIN, 16));
-		lblSuaVez.setBounds(22, 232, 140, 24);
+		lblSuaVez.setBounds(22, 271, 140, 24);
 		contentPane.add(lblSuaVez);
+		lblJogador.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblJogador.setBounds(80, 16, 82, 31);
+		
+		contentPane.add(lblJogador);
+		lblqualjogador.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblqualjogador.setBounds(157, 15, 111, 33);
+		
+		contentPane.add(lblqualjogador);
+		lblqualdificuldade.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lblqualdificuldade.setBounds(251, 15, 90, 33);
+		
+		contentPane.add(lblqualdificuldade);
+		lbldificuldade.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lbldificuldade.setBounds(342, 16, 101, 31);
+		
+		contentPane.add(lbldificuldade);
+		
+		
+		vida1.setBackground(Color.RED);
+		vida1.setBounds(238, 318, 24, 23);
+		contentPane.add(vida1);
+		
+		
+		vida2.setBackground(Color.RED);
+		vida2.setBounds(272, 318, 24, 23);
+		contentPane.add(vida2);
+		
+		
+		vida3.setBackground(Color.RED);
+		vida3.setBounds(306, 318, 24, 23);
+		contentPane.add(vida3);
+		
+		JLabel lblNewLabel_1 = new JLabel("vidas");
+		lblNewLabel_1.setFont(new Font("Verdana", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(177, 327, 64, 14);
+		contentPane.add(lblNewLabel_1);
 		
 	}
 	public void SalvaHistorico() {
@@ -322,7 +331,7 @@ public class Tela_jogo extends JFrame {
 
 		String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
 		
-		
+		// teste para salvar historico
 		String testedata = dStr.toString();
 		historico.setCod_Dificuldade(2);
 		historico.setCod_historico(1);
@@ -334,7 +343,7 @@ public class Tela_jogo extends JFrame {
 		
 		
 	}
-	
+	// metodo que faz os botoes piscar
 public void Pisca_Botoes(JButton e) {
 		
 		Color c = e.getBackground();
@@ -347,15 +356,11 @@ public void Pisca_Botoes(JButton e) {
             e.setBackground(Color.BLUE);
             Thread.sleep(controle.Dificuldade());
             }
-          //  System.out.println(e.getText().toString());
+         
             e.setBackground(Color.WHITE);
-            Thread.sleep(controle.Dificuldade());
-            
-           // System.out.println(e.getText());
-          // controlador.Tocar_Musica(e.getText().toString());
+            Thread.sleep(controle.Dificuldade()); //pega o tempo que o jogador escolheu conforme a dificuldade
+    
             e.setBackground(c);
-            // controlador.Tocar_Musica("Botao 0");
-            // Thread.sleep(controlador.getPartida_1().getPISCAR_COR());
 
         } catch (InterruptedException P) {
             // TODO Auto-generated catch block
@@ -364,7 +369,7 @@ public void Pisca_Botoes(JButton e) {
 
 		
 	}
-
+// metodo que ve de quem é a vez de jogar
 		public void ControlaVez() {
 			controlaVezJogador =0;
 			
