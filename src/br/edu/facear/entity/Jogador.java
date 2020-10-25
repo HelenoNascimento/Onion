@@ -1,7 +1,13 @@
 package br.edu.facear.entity;
 
+import br.edu.facear.dao.JogadorDAO;
+
 public class Jogador {
 	
+
+	
+	
+	private static final Jogador Jogador = null;
 	int cod_jogador;
 	
 	public int getCod_jogador() {
@@ -55,6 +61,8 @@ public class Jogador {
 		public void setEmail(String email) {
 			this.email = email;
 		}
+		
+	
 		
 
 }

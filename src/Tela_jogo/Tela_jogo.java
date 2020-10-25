@@ -43,6 +43,8 @@ public class Tela_jogo extends JFrame {
 	JButton[] botoes = {btn1,btn2 , btn3 , btn4};
 	ArrayList <Integer> lista = new ArrayList(); //sequencia do jogador
 	ArrayList <Integer> MaquinaLista = new ArrayList(); // sequencia da maquina
+	ArrayList<Integer> ListaSalvo = new ArrayList();
+	
 	Jogador jogador = new Jogador();
 	Historico historico = new Historico ();
 	ControleJogo controle = new ControleJogo();
@@ -57,7 +59,8 @@ public class Tela_jogo extends JFrame {
 	public static JLabel lblqualjogador = new JLabel("");
 	private final JLabel lblqualdificuldade = new JLabel("Dificuldade: ");
 	public static JLabel lbldificuldade = new JLabel("");
-	
+	public static int CodigoJogador;
+	private final JButton btnSalvar = new JButton("Salvar");
 	
 	
 	/**
@@ -67,6 +70,7 @@ public class Tela_jogo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					Tela_jogo frame = new Tela_jogo();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -82,10 +86,10 @@ public class Tela_jogo extends JFrame {
 	public Tela_jogo() {
 
 		array_aux[0] = "1";
-		jogador.setEmail("Teste@gemail.com");
-		jogador.setIdade("15");
-		jogador.setNome("Tiago");
-		jogador.setCod_jogador(10);
+		//jogador.setEmail("Teste@gemail.com");
+		//jogador.setIdade("15");
+		//jogador.setNome("Tiago");
+		//jogador.setCod_jogador(10);
 		setBounds(100, 100, 536, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -115,6 +119,7 @@ public class Tela_jogo extends JFrame {
 						int pont = array_aux.length;
 						jogador.setPontuacao(contadorVez);
 						jogadordao.Salvar(jogador);
+						
 						SalvaHistorico();
 						contadorVez =0;
 						
@@ -260,6 +265,22 @@ public class Tela_jogo extends JFrame {
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//String a = CodigoJogador.toString();
+				jogador = jogadordao.BuscaJogador(Integer.toString(CodigoJogador));
+				System.out.println(jogador.getCod_jogador());
+				System.out.println(jogador.getNome());
+				System.out.println(jogador.getIdade());
+				System.out.println(jogador.getEmail());
+				int t = MaquinaLista.size();
+				t = t-1;
+				//MaquinaLista.remove(t);
+				controle.Salvar(jogador, historico, MaquinaLista);
+				
+				////MaquinaLista = null;
+			/*	vezJogar =1; 
+				MaquinaLista = historicodao.LerUtilmaJogada();
+			//	historicodao.teste();
+				ControlaVez();
 				lblSuaVez.setVisible(false);
 				
 				System.out.println("");
@@ -271,7 +292,7 @@ public class Tela_jogo extends JFrame {
 				System.out.print("jogador lista");
 				for (int i = 0; i < lista.size(); i++) {	
            		 System.out.print(lista.get(i));
-           	 }
+           	 }*/
 				
 			}
 		});
@@ -323,6 +344,45 @@ public class Tela_jogo extends JFrame {
 		lblNewLabel_1.setBounds(177, 327, 64, 14);
 		contentPane.add(lblNewLabel_1);
 		
+		JButton btnRepetir = new JButton("Repetir");
+		btnRepetir.setBackground(Color.GREEN);
+		btnRepetir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//lista = null;
+				vezJogar =1; 	
+				ControlaVez();
+			}
+		});
+		btnRepetir.setBounds(357, 112, 140, 35);
+		contentPane.add(btnRepetir);
+		
+		JButton btnNewButton_2_1 = new JButton("Maior Sequencia");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MaquinaLista = controle.LerMaiorSequencia();
+				vezJogar =1; 	
+				ControlaVez();
+				
+			}
+		});
+		btnNewButton_2_1.setBackground(Color.WHITE);
+		btnNewButton_2_1.setBounds(357, 200, 140, 35);
+		contentPane.add(btnNewButton_2_1);
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int t = MaquinaLista.size();
+				t = t-1;
+				MaquinaLista.remove(t);
+				controle.MaiorSequencia(MaquinaLista);
+				
+				
+			}
+		});
+		btnSalvar.setBounds(381, 294, 89, 23);
+		
+		contentPane.add(btnSalvar);
+		
 	}
 	public void SalvaHistorico() {
 		Date data = new Date(System.currentTimeMillis());
@@ -340,6 +400,10 @@ public class Tela_jogo extends JFrame {
 		historico.setN_sequencia(contadorVez-1);
 		historico.setPontos(contadorVez*2);
 		historicodao.Salvar(historico);
+		int t = MaquinaLista.size();
+		t = t-1;
+		//MaquinaLista.remove(t);
+		//historicodao.gravar(MaquinaLista);
 		
 		
 	}

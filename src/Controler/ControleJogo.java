@@ -1,14 +1,21 @@
 package Controler;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-import Tela_jogo.Tela_inicial;
 import Tela_jogo.Tela_jogo;
+import br.edu.facear.dao.HistoricoDAO;
+import br.edu.facear.dao.JogadorDAO;
+import br.edu.facear.entity.Historico;
+import br.edu.facear.entity.Jogador;
 
 public class ControleJogo {
+	
+	Jogador jogador = new Jogador();
+	JogadorDAO jgdao = new JogadorDAO();
+	HistoricoDAO historicodao = new HistoricoDAO();
 	//Tela_inicial telainicial = new Tela_inicial();
 	int pontuacao;
 	int pontos;
@@ -83,8 +90,35 @@ public class ControleJogo {
 			}
 			
 			//public void 
+			public void Salvar(Jogador jogador,Historico historico,ArrayList histo) {
+				jogador.setPontuacao(200);
+				jgdao.Salvar(jogador);
+				historicodao.gravar(histo,Integer.toString(jogador.getCod_jogador()));
+				historicodao.Salvar(historico);
+				
+			}
 			
+			public void MaiorSequencia(ArrayList novasequencia) {
+				int sequencianova, antiga;
+				sequencianova = novasequencia.size();
+				ArrayList sequenciaAntiga = historicodao.PegaMaiorSequencia();
+				antiga = sequenciaAntiga.size();
+				//maiorsequencia = historicodao.PegaMaiorSequencia();
+				
+				sequencianova = novasequencia.size();
+				if(sequencianova >antiga) {
+				historicodao.MaiorSequencia(novasequencia);
+				}
+				
+			}
+			
+			public ArrayList LerMaiorSequencia(){
+				ArrayList maior = new ArrayList();
+				maior = historicodao.PegaMaiorSequencia();
+				return maior;
+			}
 		}
+	
 
 
 

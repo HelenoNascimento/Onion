@@ -74,11 +74,12 @@ public class Tela_inicial extends JFrame {
 		btn_jogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// NA TELA JOGO MOSTRA QUAL É O JOGADOR
-				Tela_jogo.lblqualjogador.setText(jgdao.BuscaJogador(txt_jogador.getText()));
+				Tela_jogo.lblqualjogador.setText(jgdao.BuscaCodigoJogador(txt_jogador.getText()));
 				 dificu = String.valueOf(comboBox.getSelectedItem()); // SELECIONA A DIFICULDADE
 				Tela_jogo.setVisible(true); // ABRE A TELA JOGO
 				cj.pegaDificuldade(dificu);
 				ControleJogo.dificuldadee = dificu;
+				Tela_jogo.CodigoJogador = Integer.parseInt(txt_jogador.getText());
 				
 			}
 		});

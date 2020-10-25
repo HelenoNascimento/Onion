@@ -98,7 +98,7 @@ public class JogadorDAO {
 		}
 		
 		
-		public String BuscaJogador(String joga) {
+		public String BuscaCodigoJogador(String joga) {
 			String numjogador = null;
 			// Tratamento de Erros
 			try {
@@ -125,5 +125,40 @@ public class JogadorDAO {
 			
 			return numjogador;
 		}
+		
+		public  Jogador BuscaJogador(String joga) {
+			String numjogador = null;
+			// Tratamento de Erros
+			try {
+				// Solicita ao usu�rio que informe qual o arquivo deseja
+				// abrir.
+				String arquivo = joga;
+				
+				// Inst�ncia de um Objeto da Class java(BufferedReader
+				// "Para Leitura do Arquivo"), que Inst�ncia um Objeto da
+				// Class java(FileReader) referenciando o arquivo a ser
+				// aberto.
+				BufferedReader br = new BufferedReader(
+						new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\Jogadores\\\\" + arquivo + ".txt"));
+				int codigo = Integer.parseInt(br.readLine());
+				jg.setCod_jogador(codigo);
+				jg.setNome(br.readLine());
+				jg.setEmail(br.readLine());
+				jg.setIdade(br.readLine());
+				
+				int pontuacao = Integer.parseInt(br.readLine());
+				jg.setPontuacao(pontuacao);
+				System.out.println(jg);
+				
+
+			} catch (IOException Erro) {
+				JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+			}
+			
+			return jg;
+		}
+		
+		
+		
 		
 }
