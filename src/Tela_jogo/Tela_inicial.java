@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Controler.ConfiguracaoControle;
 import Controler.ControleDificuldade;
 import Controler.ControleJogo;
 import br.edu.facear.dao.JogadorDAO;
@@ -22,6 +23,7 @@ public class Tela_inicial extends JFrame {
 	private Tela_cadastro Tela_cadastro = new Tela_cadastro();
 	private Tela_jogo  Tela_jogo = new Tela_jogo();
 	private Tela_jogadores Tela_jogadores = new Tela_jogadores();
+	ConfiguracaoControle conficotrole = new ConfiguracaoControle();
 	private JPanel contentPane;
 	 private List<Dificuldade> lista;
 	 JComboBox <String> comboBox = new JComboBox<String>();
@@ -55,7 +57,7 @@ public class Tela_inicial extends JFrame {
 	 * Create the frame.
 	 */
 	public Tela_inicial() {
-		
+		conficotrole.CriarPasta();
 		 List<Dificuldade> listDificuldade = new ControleDificuldade().criaListDificuldade();      
 	        //EstadosComboModel modelEstados = new EstadosComboModel(listEstados);
 

@@ -67,7 +67,9 @@ public class Tela_jogo extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
+			
 			public void run() {
 				try {
 					
@@ -109,18 +111,18 @@ public class Tela_jogo extends JFrame {
 						Random gerador = new Random(); 
 						numero = gerador.nextInt(4);// GERA UM NOVO NUMERO ATÉ O 4
 						MaquinaLista.add(numero); // ADICIONA ESSE NUMERO NA SEQUENCIA DA MAQUINA
-						System.out.println("entrou");
+				
 						ControlaVez(); // METEDO Q CONTROLA DE QUEM É A VEZ
-						System.out.println("errou ");
+					
 						
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
-						controle.Vida(1); // CASO O JOGADOR ERRAR ELE PERDE UMA VIDA
+						controle.Vida(1,jogador,historico,MaquinaLista,contadorVez,MaquinaLista); // CASO O JOGADOR ERRAR ELE PERDE UMA VIDA
 						int pont = array_aux.length;
-						jogador.setPontuacao(contadorVez);
-						jogadordao.Salvar(jogador);
+					//	jogador.setPontuacao(contadorVez);
+					//	jogadordao.Salvar(jogador);
 						
-						SalvaHistorico();
+						//SalvaHistorico();
 						contadorVez =0;
 						
 					}
@@ -152,16 +154,15 @@ public class Tela_jogo extends JFrame {
 						Random gerador = new Random();
 						numero = gerador.nextInt(4);
 						MaquinaLista.add(numero);
-						System.out.println("entrou");
 						ControlaVez();
-						System.out.println("errou ");
+						
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
-						controle.Vida(1);
+						controle.Vida(1,jogador,historico,MaquinaLista,contadorVez,MaquinaLista);
 						int pont = array_aux.length;
 						jogador.setPontuacao(contadorVez);
-						jogadordao.Salvar(jogador);
-						SalvaHistorico();
+						//jogadordao.Salvar(jogador);
+					//	SalvaHistorico();
 						contadorVez =0;
 					}
 					
@@ -189,16 +190,16 @@ public class Tela_jogo extends JFrame {
 						Random gerador = new Random();
 						numero = gerador.nextInt(4);
 						MaquinaLista.add(numero);
-						System.out.println("entrou");
+						
 						ControlaVez();
-						System.out.println("errou ");
+						
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
-						controle.Vida(1);
+						controle.Vida(1,jogador,historico,MaquinaLista,contadorVez,MaquinaLista);
 						int pont = array_aux.length;
-						jogador.setPontuacao(contadorVez);
-						jogadordao.Salvar(jogador);
-						SalvaHistorico();
+						//jogador.setPontuacao(contadorVez);
+						//jogadordao.Salvar(jogador);
+					//	SalvaHistorico();
 						contadorVez =0;
 					}
 					
@@ -225,16 +226,16 @@ public class Tela_jogo extends JFrame {
 						Random gerador = new Random();
 						numero = gerador.nextInt(4);
 						MaquinaLista.add(numero);
-						System.out.println("entrou");
+						
 						ControlaVez();
-						System.out.println("errou ");
+					
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
-						controle.Vida(1);
+						controle.Vida(1,jogador,historico,MaquinaLista,contadorVez,MaquinaLista);
 						int pont = array_aux.length;
-						jogador.setPontuacao(contadorVez);
-						jogadordao.Salvar(jogador);
-						SalvaHistorico();
+						//jogador.setPontuacao(contadorVez);
+					//	jogadordao.Salvar(jogador);
+					//	SalvaHistorico();
 						contadorVez =0;
 					}
 					
@@ -253,7 +254,8 @@ public class Tela_jogo extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				contadorVez = 0;
 				vezJogar = 1;
-				
+				//String a = (Integer.toString(CodigoJogador));
+				jogador = jogadordao.BuscaJogador(Integer.toString(CodigoJogador));
 				ControlaVez(); //metodo que controla de quem é a vez
 			}
 				
@@ -274,7 +276,7 @@ public class Tela_jogo extends JFrame {
 				int t = MaquinaLista.size();
 				t = t-1;
 				//MaquinaLista.remove(t);
-				controle.Salvar(jogador, historico, MaquinaLista);
+				controle.Salvar(jogador, historico, MaquinaLista,contadorVez);
 				
 				////MaquinaLista = null;
 			/*	vezJogar =1; 

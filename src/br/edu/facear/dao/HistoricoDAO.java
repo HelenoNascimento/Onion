@@ -24,7 +24,7 @@ public class HistoricoDAO {
 		try {
 			// Inst�ncia de um Objeto da Class Java(PrintWriter
 			// "para Grava��o do Arquivo").
-			PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Historico\\" +historico.getCod_historico() + ".txt");// Define
+			PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Historico\\" +historico.getCod_historico()+".txt");// Define
 																											// o
 																											// local
 																											// e
@@ -62,7 +62,7 @@ public class HistoricoDAO {
 			
 			// Inst�ncia de um Objeto da Class Java(PrintWriter
 			// "para Grava��o do Arquivo").
-			PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Historico\\" +cod+".txt");// Define
+			PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\\\HistoricoSequencia\\" +cod+".txt");// Define
 
 			for (int i = 0; i < texto.size(); i++){
 				out.print((int) texto.get(i));
@@ -87,7 +87,7 @@ public class HistoricoDAO {
 		try {
 			
 			BufferedReader br = new BufferedReader(
-					new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\Historico\\\\0.txt")); // instancia o objeto da classe File com o caminho do arquivo a ser lido
+					new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\\\HistoricoSequencia\\\\0.txt")); // instancia o objeto da classe File com o caminho do arquivo a ser lido
 			String line = br.readLine();
 			 
 			//System.out.println("aa"+line);
@@ -160,7 +160,7 @@ public static void MaiorSequencia(ArrayList texto){
 			
 			// Inst�ncia de um Objeto da Class Java(PrintWriter
 			// "para Grava��o do Arquivo").
-			PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Historico\\MaiorSequencia.txt");// Define
+			PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\\\HistoricoSequencia\\MaiorSequencia.txt");// Define
 
 			for (int i = 0; i < texto.size(); i++){
 				out.print((int) texto.get(i));
@@ -170,7 +170,7 @@ public static void MaiorSequencia(ArrayList texto){
 				// Fecha Conex�o.
 			out.close();
 				// Exibe caixa de Dialogo.
-			JOptionPane.showMessageDialog(null, "Maior Sequencia gerado e conte�do gravado com sucesso!");
+			JOptionPane.showMessageDialog(null, "Parabeeens ah um novo record!");
 			//return texto;
 			
 		} catch (IOException Erro) {
@@ -185,7 +185,7 @@ public static ArrayList  PegaMaiorSequencia (){
 	try {
 
 		
-		FileReader arq = new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\Historico\\\\MaiorSequencia.txt"); // instancia o objeto da classe File com o caminho do arquivo a ser lido
+		FileReader arq = new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\\\HistoricoSequencia\\\\MaiorSequencia.txt"); // instancia o objeto da classe File com o caminho do arquivo a ser lido
 		 BufferedReader lerArq = new BufferedReader(arq);
 		 String linha = lerArq.readLine(); 
 		System.out.println("aa"+linha);

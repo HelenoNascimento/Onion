@@ -139,7 +139,7 @@ public class JogadorDAO {
 				// Class java(FileReader) referenciando o arquivo a ser
 				// aberto.
 				BufferedReader br = new BufferedReader(
-						new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\Jogadores\\\\" + arquivo + ".txt"));
+						new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\Jogadores\\\\" + joga + ".txt"));
 				int codigo = Integer.parseInt(br.readLine());
 				jg.setCod_jogador(codigo);
 				jg.setNome(br.readLine());

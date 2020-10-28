@@ -1,10 +1,13 @@
 package Controler;
 
 import java.awt.Color;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import Tela_jogo.Tela_jogadores;
 import Tela_jogo.Tela_jogo;
 import br.edu.facear.dao.HistoricoDAO;
 import br.edu.facear.dao.JogadorDAO;
@@ -16,6 +19,7 @@ public class ControleJogo {
 	Jogador jogador = new Jogador();
 	JogadorDAO jgdao = new JogadorDAO();
 	HistoricoDAO historicodao = new HistoricoDAO();
+	ConfiguracaoControle conficotrole = new ConfiguracaoControle();
 	//Tela_inicial telainicial = new Tela_inicial();
 	int pontuacao;
 	int pontos;
@@ -41,6 +45,7 @@ public class ControleJogo {
 						pontuacao = 1 * 1000;
 						Tela_jogo.lbldificuldade.setText("Facil");
 						Tela_jogo.lbldificuldade.setForeground(Color.green);
+						
 		
 					}else if (dificuldade =="Normal") {
 						System.out.println("dificuldade  "+dificuldadee);
@@ -65,7 +70,7 @@ public class ControleJogo {
 				return pontuacao;
 					}
 			// metodo que controla a quantidade de vida
-			public int Vida(int vidaRecebida ) {
+			public int Vida(int vidaRecebida, Jogador jogador,Historico historico,ArrayList histo,int contadorVez,ArrayList novasequencia) {
 				
 				vidatotal = vidatotal - vidaRecebida;
 				System.out.println("total vida "+vidatotal);
@@ -76,6 +81,8 @@ public class ControleJogo {
 					Tela_jogo.vida1.setVisible(false); // controla as vidas que mostra na tela jogo
 					Tela_jogo.vida2.setVisible(false);
 					Tela_jogo.vida3.setVisible(false);
+					Salvar(jogador,historico,histo,contadorVez);
+					MaiorSequencia(novasequencia);
 					//Tela_jogo.
 				}else if(vidatotal == 1) {
 					Tela_jogo.vida1.setVisible(false);
@@ -90,15 +97,44 @@ public class ControleJogo {
 			}
 			
 			//public void 
-			public void Salvar(Jogador jogador,Historico historico,ArrayList histo) {
+			public void Salvar(Jogador jogador,Historico historico,ArrayList histo,int contadorVez) {
+				Date data = new Date(System.currentTimeMillis());
+				java.util.Date d = new Date();
+				
+
+				String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+				
+				// teste para salvar historico
+				String testedata = dStr.toString();
+				historico.setCod_Dificuldade(0);
+				
+				historico.setCod_historico(conficotrole.PegarCodHistorico());
+				if(historico.getCod_historico() <0) {
+					historico.setCod_historico(0);
+					conficotrole.ControleCodHistorico(0, 0);
+				}else {
+					conficotrole.ControleCodHistorico(conficotrole.PegarCodHistorico(), 0);
+				}
+				historico.setCod_jogador(jogador.getCod_jogador());
+				historico.setDate(testedata);
+				historico.setN_sequencia(contadorVez-1);
+				historico.setPontos(contadorVez*2);
+
+				int t = histo.size();
+				t = t-1;
+				histo.remove(t);
+				
+				
 				jogador.setPontuacao(200);
 				jgdao.Salvar(jogador);
 				historicodao.gravar(histo,Integer.toString(jogador.getCod_jogador()));
 				historicodao.Salvar(historico);
+				//historicodao.Salvar(historico);
 				
 			}
 			
 			public void MaiorSequencia(ArrayList novasequencia) {
+			
 				int sequencianova, antiga;
 				sequencianova = novasequencia.size();
 				ArrayList sequenciaAntiga = historicodao.PegaMaiorSequencia();
@@ -117,6 +153,8 @@ public class ControleJogo {
 				maior = historicodao.PegaMaiorSequencia();
 				return maior;
 			}
+			
+			
 		}
 	
 
