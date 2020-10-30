@@ -39,6 +39,8 @@ public class ConfiguracaoDAO {
 	}
 	
 	
+	
+	
 	public int PegarCodHistorico() {
 		int cod_historico = -1;
 	
@@ -58,6 +60,29 @@ public class ConfiguracaoDAO {
 		}
 		
 		return  cod_historico;
+	}
+	
+	
+	public int PegarCodJogador() {
+		int cod_jogador = -1;
+	
+		try {
+
+
+			BufferedReader br = new BufferedReader(
+					new FileReader("C:\\Users\\helen\\Documents\\Onion\\configuracao.txt"));
+
+			// Ler o conte�do do arquivo e exibe nos JTextField.
+			br.readLine();
+			cod_jogador = Integer.parseInt(br.readLine());
+			//tfNome.setText(br.readLine());
+			//tfEmail.setText(br.readLine());
+
+		} catch (IOException Erro) {
+			JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+		}
+		
+		return  cod_jogador;
 	}
 	// metedo que cria as pastas caso elas nao existam 
 		public void CriarPastas() {

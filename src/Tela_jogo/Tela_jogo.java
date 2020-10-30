@@ -255,7 +255,7 @@ public class Tela_jogo extends JFrame {
 				contadorVez = 0;
 				vezJogar = 1;
 				//String a = (Integer.toString(CodigoJogador));
-				jogador = jogadordao.BuscaJogador(Integer.toString(CodigoJogador));
+				//jogador = jogadordao.BuscaJogador(Integer.toString(CodigoJogador));
 				ControlaVez(); //metodo que controla de quem é a vez
 			}
 				

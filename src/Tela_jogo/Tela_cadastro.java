@@ -10,10 +10,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Controler.ConfiguracaoControle;
+import Controler.ControleJogador;
 import br.edu.facear.dao.JogadorDAO;
 import br.edu.facear.entity.Jogador;
 
@@ -26,7 +29,10 @@ public class Tela_cadastro extends JFrame {
 	public static DefaultListModel lista;
 	ArrayList  <Jogador> listadejogador= new ArrayList();
 	JogadorDAO jogadordao = new JogadorDAO();
-	private JTextField txt_codigo;
+	ControleJogador controlejg = new ControleJogador();
+	ConfiguracaoControle confcontrole = new ConfiguracaoControle();
+	private JTextField txt_senha1;
+	private JTextField txt_senha2;
 	
 	/**
 	 * Launch the application.
@@ -61,7 +67,7 @@ public class Tela_cadastro extends JFrame {
 		contentPane.add(lblNome);
 		
 		txt_nome = new JTextField();
-		txt_nome.setBounds(92, 55, 86, 20);
+		txt_nome.setBounds(92, 55, 119, 20);
 		contentPane.add(txt_nome);
 		txt_nome.setColumns(10);
 		
@@ -74,13 +80,13 @@ public class Tela_cadastro extends JFrame {
 		contentPane.add(lblEmail);
 		
 		txt_idade = new JTextField();
-		txt_idade.setBounds(92, 92, 86, 20);
+		txt_idade.setBounds(92, 92, 119, 20);
 		contentPane.add(txt_idade);
 		txt_idade.setColumns(10);
 		
 		txt_email = new JTextField();
 		txt_email.setColumns(10);
-		txt_email.setBounds(92, 127, 86, 20);
+		txt_email.setBounds(92, 127, 119, 20);
 		contentPane.add(txt_email);
 		
 		
@@ -89,37 +95,46 @@ public class Tela_cadastro extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				//Jogador jn = new Jogador();
 				
-				
+				int comparacao =0;
 				String nome;
 				String idade;
 				
 				int codigo;
-				codigo =Integer.parseInt(txt_codigo.getText());
+				codigo = confcontrole.PegarCodJogador();
 				nome = (txt_nome.getText());
-				jogador.setNome(nome);
+				//jogador.setNome(nome);
+			jogador.setNome(txt_nome.getText());
 				jogador.setCod_jogador(codigo);
 				
 				idade = (txt_idade.getText());
 				jogador.setIdade(idade);
 				jogador.setEmail(txt_email.getText());
+				//comparacao= controlejg.comparaSenha(txt_senha1.getText(), txt_senha2.getText());
+			
+				jogador.setSenha(Integer.parseInt(txt_senha1.getText()));
+				controlejg.CadastrarJogador(jogador);
+				
 				listadejogador.add(jogador);
+				
 				//for(int cont = 0;cont < listadejogador.size();cont++){
 					lista.addElement(jogador.getCod_jogador()+"      "+jogador.getNome()+"      "+jogador.getIdade()+"    "+jogador.getEmail()+ "   "+jogador.getPontuacao());
 				//	lista.addElement(listadejogador.get(cont).getNome()+"    "+listadejogador.get(cont).getIdade());
-					jogadordao.Salvar(jogador);
+					//jogadordao.Salvar(jogador);
 					
 				//lista.set(index, nome);
 				txt_nome.setText(null);
 				txt_idade.setText(null);
 				txt_email.setText(null);
+				txt_senha1.setText(null);
+				txt_senha2.setText(null);
 				
 			}
 		});
-		btnCadastrar.setBounds(69, 158, 89, 23);
+		btnCadastrar.setBounds(235, 219, 89, 23);
 		contentPane.add(btnCadastrar);
 		lista = new DefaultListModel();
 		JList list = new JList(lista);
-		list.setBounds(222, 24, 190, 169);
+		list.setBounds(350, 24, 190, 169);
 		contentPane.add(list);
 		
 		JButton btnJ_jogadores = new JButton("Jogadores");
@@ -138,16 +153,25 @@ public class Tela_cadastro extends JFrame {
 			tela_jogadores.setVisible(true);
 			}
 		});
-		btnJ_jogadores.setBounds(450, 58, 89, 23);
+		btnJ_jogadores.setBounds(372, 219, 89, 23);
 		contentPane.add(btnJ_jogadores);
 		
-		txt_codigo = new JTextField();
-		txt_codigo.setColumns(10);
-		txt_codigo.setBounds(92, 24, 86, 20);
-		contentPane.add(txt_codigo);
+		JLabel lblsenha1 = new JLabel("Senha");
+		lblsenha1.setBounds(22, 179, 46, 14);
+		contentPane.add(lblsenha1);
 		
-		JLabel lbl_cod = new JLabel("Codigo");
-		lbl_cod.setBounds(36, 27, 46, 14);
-		contentPane.add(lbl_cod);
+		txt_senha1 = new JTextField();
+		txt_senha1.setColumns(10);
+		txt_senha1.setBounds(123, 180, 86, 20);
+		contentPane.add(txt_senha1);
+		
+		JLabel lblConfirmarSenha = new JLabel("Confirmar senha");
+		lblConfirmarSenha.setBounds(22, 212, 109, 20);
+		contentPane.add(lblConfirmarSenha);
+		
+		txt_senha2 = new JTextField();
+		txt_senha2.setColumns(10);
+		txt_senha2.setBounds(123, 212, 86, 20);
+		contentPane.add(txt_senha2);
 	}
 }

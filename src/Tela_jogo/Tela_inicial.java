@@ -18,6 +18,7 @@ import Controler.ControleDificuldade;
 import Controler.ControleJogo;
 import br.edu.facear.dao.JogadorDAO;
 import br.edu.facear.entity.Dificuldade;
+import br.edu.facear.entity.Jogador;
 
 public class Tela_inicial extends JFrame {
 	private Tela_cadastro Tela_cadastro = new Tela_cadastro();
@@ -32,8 +33,9 @@ public class Tela_inicial extends JFrame {
 	 ControleJogo cj = new ControleJogo();
 	 Dificuldade df = new Dificuldade();
 	 JogadorDAO jgdao = new JogadorDAO();
+	 Jogador jg  = new Jogador();
 	 private JTextField txt_jogador;
-	 
+	 public static JLabel lbljogador = new JLabel("");
 	 //String dificuldade = null;
 	/**
 	 * Launch the application.
@@ -44,6 +46,7 @@ public class Tela_inicial extends JFrame {
 				
 				
 				try {
+					
 					Tela_inicial frame = new Tela_inicial();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -57,6 +60,7 @@ public class Tela_inicial extends JFrame {
 	 * Create the frame.
 	 */
 	public Tela_inicial() {
+		
 		conficotrole.CriarPasta();
 		 List<Dificuldade> listDificuldade = new ControleDificuldade().criaListDificuldade();      
 	        //EstadosComboModel modelEstados = new EstadosComboModel(listEstados);
@@ -76,12 +80,14 @@ public class Tela_inicial extends JFrame {
 		btn_jogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// NA TELA JOGO MOSTRA QUAL É O JOGADOR
-				Tela_jogo.lblqualjogador.setText(jgdao.BuscaCodigoJogador(txt_jogador.getText()));
+				//Tela_jogo.lblqualjogador.setText(jgdao.BuscaCodigoJogador(txt_jogador.getText()));
+				Tela_jogo.lblqualjogador.setText(jg.getNome());
 				 dificu = String.valueOf(comboBox.getSelectedItem()); // SELECIONA A DIFICULDADE
 				Tela_jogo.setVisible(true); // ABRE A TELA JOGO
 				cj.pegaDificuldade(dificu);
 				ControleJogo.dificuldadee = dificu;
-				Tela_jogo.CodigoJogador = Integer.parseInt(txt_jogador.getText());
+				//Tela_jogo.CodigoJogador = Integer.parseInt(txt_jogador.getText());
+				Tela_jogo.jogador = jg;
 				
 			}
 		});
@@ -125,12 +131,28 @@ public class Tela_inicial extends JFrame {
 		txt_jogador.setBounds(270, 198, 86, 20);
 		contentPane.add(txt_jogador);
 		txt_jogador.setColumns(10);
+	
+		
+		lbljogador.setBounds(229, 30, 172, 51);
+		contentPane.add(lbljogador);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println(jg);
+				 txt_jogador.setText(Integer.toString(jg.getCod_jogador()));
+			}
+		});
+		btnNewButton.setBounds(102, 227, 89, 23);
+		contentPane.add(btnNewButton);
+
+		
 		comboBox.addItem("Facil");
 		comboBox.addItem("Normal");
 		comboBox.addItem("Dificil");
 		comboBox.addItem("Hardcore");
 		System.out.println(String.valueOf(comboBox.getSelectedItem()));
-		
+		System.out.println(jg.getNome()+"aa");
 		System.out.println(comboBox.getSelectedIndex());
 		/*for(int i = 0; i < lista.size(); i++) {
 			
@@ -139,4 +161,5 @@ public class Tela_inicial extends JFrame {
 			}*/
 		
 		}
+	
 }

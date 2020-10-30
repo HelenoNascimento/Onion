@@ -14,14 +14,15 @@ import javax.swing.table.TableModel;
 
 
 import Tela_jogo.Tela_Historico;
+import Tela_jogo.Tela_inicial;
 import Tela_jogo.Tela_jogadores;
 import br.edu.facear.entity.Jogador;
 
 public class JogadorDAO {
 	Jogador jg = new Jogador();
+	
 	ArrayList  <Jogador> listadejogador= new ArrayList();
 
-	
 		public void Salvar(Jogador jg) {
 			try {
 				// Inst�ncia de um Objeto da Class Java(PrintWriter
@@ -44,6 +45,7 @@ public class JogadorDAO {
 				out.println(jg.getEmail());
 				out.println(jg.getIdade());
 				out.println(jg.getPontuacao());
+				out.println(jg.getSenha());
 
 				// Fecha Conex�o.
 				out.close();
@@ -58,7 +60,36 @@ public class JogadorDAO {
 			
 		}
 		
+		public Jogador Logar(String nome) {
+
+					try {
+				
+						BufferedReader br = new BufferedReader(
+								new FileReader("C:\\Users\\helen\\Documents\\Onion\\Jogadores\\"+nome+".txt")); 
+			
+							
+						int codigo = Integer.parseInt(br.readLine());
+						
+						jg.setCod_jogador(codigo);
+						jg.setNome(br.readLine());
+						jg.setEmail(br.readLine());
+						jg.setIdade(br.readLine());
+						
+						int pontuacao = Integer.parseInt(br.readLine());
+						jg.setPontuacao(pontuacao);
+						
+						
+						jg.setSenha(Integer.parseInt(br.readLine()));
+						System.out.println(jg);
+						JOptionPane.showMessageDialog(null, "Bem vindo de volta "+jg.getNome());
+				
+					} catch (IOException Erro) {
+						//JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+					}
 		
+		
+			return jg;
+}
 		
 		public void ListarJogadores() {
 			for(int i =0 ;i<10; i++) {
@@ -159,6 +190,31 @@ public class JogadorDAO {
 		}
 		
 		
+		public void Cadastrar(Jogador jg) {
+			try {
+				// Inst�ncia de um Objeto da Class Java(PrintWriter
+				// "para Grava��o do Arquivo").
+				PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Jogadores\\" +jg.getNome() + ".txt");// Define
+				
+				out.println(jg.getCod_jogador());
+				out.println(jg.getNome());
+				out.println(jg.getEmail());
+				out.println(jg.getIdade());
+				out.println(jg.getPontuacao());
+				out.println(jg.getSenha());
+
+				// Fecha Conex�o.
+				out.close();
+
+				
+				JOptionPane.showMessageDialog(null, "Arquivo gerado e conte�do gravado com sucesso!");
+
+			} catch (IOException Erro) {
+				JOptionPane.showMessageDialog(null, "Erro ao Gravar no Arquivo" + Erro);
+			}
+			
+			
+		}
 		
 		
 }

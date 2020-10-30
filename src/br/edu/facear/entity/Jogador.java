@@ -13,6 +13,16 @@ public class Jogador {
 	public int getCod_jogador() {
 		return cod_jogador;
 	}
+	
+	private int Senha;
+
+	public int getSenha() {
+		return Senha;
+	}
+
+	public void setSenha(int senha) {
+		Senha = senha;
+	}
 
 	@Override
 	public String toString() {

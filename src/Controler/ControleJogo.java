@@ -127,6 +127,7 @@ public class ControleJogo {
 				
 				jogador.setPontuacao(200);
 				jgdao.Salvar(jogador);
+				jgdao.Cadastrar(jogador);
 				historicodao.gravar(histo,Integer.toString(jogador.getCod_jogador()));
 				historicodao.Salvar(historico);
 				//historicodao.Salvar(historico);
