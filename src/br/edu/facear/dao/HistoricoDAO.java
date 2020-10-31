@@ -19,6 +19,7 @@ public class HistoricoDAO {
 	Historico historico = new Historico();
 	 static ArrayList <Integer> texto = new ArrayList();
 	 static ArrayList <Integer> Maior = new ArrayList();
+	 static ArrayList <Integer> Salvo = new ArrayList();
 	
 	public void Salvar(Historico historico) {
 		try {
@@ -47,7 +48,7 @@ public class HistoricoDAO {
 			out.close();
 
 			// Exibe caixa de Dialogo.
-			JOptionPane.showMessageDialog(null, "Arquivo gerado e conte�do gravado com sucesso!");
+			//JOptionPane.showMessageDialog(null, "Arquivo gerado e conte�do gravado com sucesso!");
 
 		} catch (IOException Erro) {
 			JOptionPane.showMessageDialog(null, "Erro ao Gravar no Arquivo" + Erro);
@@ -72,7 +73,7 @@ public class HistoricoDAO {
 				// Fecha Conex�o.
 			out.close();
 				// Exibe caixa de Dialogo.
-			JOptionPane.showMessageDialog(null, "Historico gerado e conte�do gravado com sucesso!");
+			//JOptionPane.showMessageDialog(null, "Historico gerado e conte�do gravado com sucesso!");
 			//return texto;
 			
 		} catch (IOException Erro) {
@@ -82,12 +83,12 @@ public class HistoricoDAO {
 			
 	}
 	
-	public static ArrayList LerUtilmaJogada( ){
+	public static ArrayList LerUtilmaJogada(String codigo){
 		
 		try {
 			
 			BufferedReader br = new BufferedReader(
-					new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\\\HistoricoSequencia\\\\0.txt")); // instancia o objeto da classe File com o caminho do arquivo a ser lido
+					new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\\\HistoricoSequencia\\\\"+codigo+".txt")); // instancia o objeto da classe File com o caminho do arquivo a ser lido
 			String line = br.readLine();
 			 
 			//System.out.println("aa"+line);
@@ -170,7 +171,7 @@ public static void MaiorSequencia(ArrayList texto){
 				// Fecha Conex�o.
 			out.close();
 				// Exibe caixa de Dialogo.
-			JOptionPane.showMessageDialog(null, "Parabeeens ah um novo record!");
+		//	JOptionPane.showMessageDialog(null, "Parabeeens ah um novo record!");
 			//return texto;
 			
 		} catch (IOException Erro) {
@@ -208,5 +209,37 @@ public static ArrayList  PegaMaiorSequencia (){
 
 }
 
+
+public static ArrayList  PegarSalvo (String codigo){
+
+	try {
+
+		//"C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\\\HistoricoSequencia\\"+codigo+".txt"
+		FileReader arq = new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\\\HistoricoSequencia\\"+codigo+".txt"); // instancia o objeto da classe File com o caminho do arquivo a ser lido
+		 BufferedReader lerArq = new BufferedReader(arq);
+		 String linha = lerArq.readLine(); 
+
+		
+		while (linha != null) {
+			int tes = Integer.parseInt(linha);
+		
+			Salvo.add(tes);
+		System.out.println(linha);
+			linha = lerArq.readLine();
+			
+		}
+		arq.close();
+		System.out.println("tex to");
+		for (int i = 0; i < Salvo.size(); i++) {	
+			
+	  		 System.out.print(Salvo.get(i));
+	  	 }
+		
+	} catch (IOException Erro) {
+		//JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+	}
+	return Salvo;
+	
+}
 	
 }

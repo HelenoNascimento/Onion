@@ -38,28 +38,34 @@ public class Tela_jogo extends JFrame {
 	public static JButton vida1 = new JButton("");
 	public static JButton vida2 = new JButton("");
 	public static JButton vida3 = new JButton("");
+	
+	public static JButton btn_start = new JButton("Iniciar");
+	
 	public static JLabel lblSuaVez = new JLabel("Sua Vez!!");
 	String[] array_aux = new String[8];
 	JButton[] botoes = {btn1,btn2 , btn3 , btn4};
 	ArrayList <Integer> lista = new ArrayList(); //sequencia do jogador
 	ArrayList <Integer> MaquinaLista = new ArrayList(); // sequencia da maquina
-	ArrayList<Integer> ListaSalvo = new ArrayList();
+	public ArrayList<Integer> ListaSalvo = new ArrayList();
 	
 	Jogador jogador = new Jogador();
 	Historico historico = new Historico ();
 	ControleJogo controle = new ControleJogo();
 	JogadorDAO jogadordao = new JogadorDAO();
 	HistoricoDAO historicodao = new HistoricoDAO();
+	public int Continuar = 0;
 	int contadorVez = 0;
 	int numero;
 	int vezJogar = 0;
 	int controlaVezJogador = 0;
+	int totalVida= 3;
 	int num = 0;
 	private final JLabel lblJogador = new JLabel("Jogador");
 	public static JLabel lblqualjogador = new JLabel("");
 	private final JLabel lblqualdificuldade = new JLabel("Dificuldade: ");
 	public static JLabel lbldificuldade = new JLabel("");
 	public static int CodigoJogador;
+	public static int reiniciar =0;
 	private final JButton btnSalvar = new JButton("Salvar");
 	
 	
@@ -92,7 +98,7 @@ public class Tela_jogo extends JFrame {
 		//jogador.setIdade("15");
 		//jogador.setNome("Tiago");
 		//jogador.setCod_jogador(10);
-		setBounds(100, 100, 536, 400);
+		setBounds(100, 100, 559, 416);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -137,7 +143,7 @@ public class Tela_jogo extends JFrame {
 		});
 		
 
-		btn1.setBackground(new Color(0, 100, 0));
+		btn1.setBackground(new Color(50, 205, 50));
 		btn1.setBounds(76, 70, 114, 77);
 		contentPane.add(btn1);
 		btn2.addActionListener(new ActionListener() {
@@ -173,7 +179,7 @@ public class Tela_jogo extends JFrame {
 		});
 		
 		
-		btn2.setBackground(new Color(153, 0, 0));
+		btn2.setBackground(new Color(255, 0, 0));
 		btn2.setBounds(213, 70, 114, 77);
 		contentPane.add(btn2);
 		btn3.addActionListener(new ActionListener() {
@@ -209,7 +215,7 @@ public class Tela_jogo extends JFrame {
 		});
 		
 		
-		btn3.setBackground(new Color(0, 0, 153));
+		btn3.setBackground(new Color(0, 0, 255));
 		btn3.setBounds(76, 158, 114, 77);
 		contentPane.add(btn3);
 		btn4.addActionListener(new ActionListener() {
@@ -245,24 +251,46 @@ public class Tela_jogo extends JFrame {
 		});
 		
 		
-		btn4.setBackground(new Color(255, 204, 0));
+		btn4.setBackground(new Color(255, 255, 0));
 		btn4.setBounds(216, 158, 111, 77);
 		contentPane.add(btn4);
 		
-		JButton btnNewButton = new JButton("Iniciar");
-		btnNewButton.addActionListener(new ActionListener() {
+	
+		btn_start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if(Continuar == 1) {
+					MaquinaLista = ListaSalvo;
+					num =1;
+					Continuar = 0;
+				}
+				
+				if(reiniciar == 1) {
+					totalVida = controle.Vida(-3,jogador,historico,MaquinaLista,contadorVez,MaquinaLista); // CASO O JOGADOR ERRAR ELE PERDE UMA VIDA
+					MaquinaLista.clear();
+					lista.clear();
+					reiniciar =0;
+					num =0;
+					if(totalVida ==3) {
+						//vida1.setVisible(true);
+						//vida2.setVisible(true);
+						//vida3.setVisible(true);
+					}
+					
+					//controle.Vida(-3,jogador,historico,MaquinaLista,contadorVez,MaquinaLista); // CASO O JOGADOR ERRAR ELE PERDE UMA VIDA
+				}
 				contadorVez = 0;
 				vezJogar = 1;
 				//String a = (Integer.toString(CodigoJogador));
 				//jogador = jogadordao.BuscaJogador(Integer.toString(CodigoJogador));
 				ControlaVez(); //metodo que controla de quem é a vez
+	
 			}
 				
 			
 		});
-		btnNewButton.setBounds(36, 306, 89, 23);
-		contentPane.add(btnNewButton);
+		btn_start.setBounds(22, 306, 140, 35);
+		contentPane.add(btn_start);
 		
 		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -295,6 +323,8 @@ public class Tela_jogo extends JFrame {
 				for (int i = 0; i < lista.size(); i++) {	
            		 System.out.print(lista.get(i));
            	 }*/
+				
+				
 				
 			}
 		});
@@ -377,6 +407,8 @@ public class Tela_jogo extends JFrame {
 				t = t-1;
 				MaquinaLista.remove(t);
 				controle.MaiorSequencia(MaquinaLista);
+				String cod = Integer.toString(jogador.getCod_jogador());
+				controle.SalvarJogada(MaquinaLista, cod);
 				
 				
 			}

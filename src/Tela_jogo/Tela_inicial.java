@@ -16,15 +16,20 @@ import javax.swing.border.EmptyBorder;
 import Controler.ConfiguracaoControle;
 import Controler.ControleDificuldade;
 import Controler.ControleJogo;
+import br.edu.facear.dao.HistoricoDAO;
 import br.edu.facear.dao.JogadorDAO;
 import br.edu.facear.entity.Dificuldade;
 import br.edu.facear.entity.Jogador;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.UIManager;
 
 public class Tela_inicial extends JFrame {
 	private Tela_cadastro Tela_cadastro = new Tela_cadastro();
 	private Tela_jogo  Tela_jogo = new Tela_jogo();
 	private Tela_jogadores Tela_jogadores = new Tela_jogadores();
 	ConfiguracaoControle conficotrole = new ConfiguracaoControle();
+	
 	private JPanel contentPane;
 	 private List<Dificuldade> lista;
 	 JComboBox <String> comboBox = new JComboBox<String>();
@@ -34,7 +39,6 @@ public class Tela_inicial extends JFrame {
 	 Dificuldade df = new Dificuldade();
 	 JogadorDAO jgdao = new JogadorDAO();
 	 Jogador jg  = new Jogador();
-	 private JTextField txt_jogador;
 	 public static JLabel lbljogador = new JLabel("");
 	 //String dificuldade = null;
 	/**
@@ -70,13 +74,15 @@ public class Tela_inicial extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 521, 342);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btn_jogar = new JButton("Jogar");
+		JButton btn_jogar = new JButton("Novo Jogo");
+		btn_jogar.setBackground(new Color(50, 205, 50));
+		btn_jogar.setFont(new Font("Verdana", Font.PLAIN, 15));
 		btn_jogar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// NA TELA JOGO MOSTRA QUAL É O JOGADOR
@@ -91,7 +97,7 @@ public class Tela_inicial extends JFrame {
 				
 			}
 		});
-		btn_jogar.setBounds(50, 58, 119, 23);
+		btn_jogar.setBounds(50, 58, 141, 42);
 		contentPane.add(btn_jogar);
 		
 		JButton btn_cadastrar = new JButton("Cadastrar");
@@ -101,7 +107,7 @@ public class Tela_inicial extends JFrame {
 				Tela_cadastro.setVisible(true);
 			}
 		});
-		btn_cadastrar.setBounds(50, 116, 119, 23);
+		btn_cadastrar.setBounds(295, 255, 119, 23);
 		contentPane.add(btn_cadastrar);
 		
 		JButton btnJogadores = new JButton("Jogadores");
@@ -113,7 +119,7 @@ public class Tela_inicial extends JFrame {
 			}
 			
 		});
-		btnJogadores.setBounds(50, 169, 119, 23);
+		btnJogadores.setBounds(50, 209, 119, 23);
 		contentPane.add(btnJogadores);
 		
 		//comboBox = 
@@ -122,29 +128,48 @@ public class Tela_inicial extends JFrame {
 		comboBox.setToolTipText("aaa\r\naaa\r\naa");
 		comboBox.setBounds(282, 96, 102, 23);
 		contentPane.add(comboBox);
-		
-		JLabel lblNewLabel = new JLabel("Qual jogador Teste");
-		lblNewLabel.setBounds(273, 173, 111, 14);
-		contentPane.add(lblNewLabel);
-		
-		txt_jogador = new JTextField();
-		txt_jogador.setBounds(270, 198, 86, 20);
-		contentPane.add(txt_jogador);
-		txt_jogador.setColumns(10);
+		lbljogador.setFont(new Font("Verdana", Font.PLAIN, 25));
 	
 		
-		lbljogador.setBounds(229, 30, 172, 51);
+		lbljogador.setBounds(291, 11, 172, 51);
 		contentPane.add(lbljogador);
 		
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println(jg);
-				 txt_jogador.setText(Integer.toString(jg.getCod_jogador()));
+				// txt_jogador.setText(Integer.toString(jg.getCod_jogador()));
 			}
 		});
-		btnNewButton.setBounds(102, 227, 89, 23);
+		btnNewButton.setBounds(102, 255, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Continuar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Tela_jogo.Continuar =1;
+				String codigo = Integer.toString(jg.getCod_jogador());
+				Tela_jogo.ListaSalvo = HistoricoDAO.PegarSalvo(codigo);
+				//Tela_jogo.ListaSalvo = HistoricoDAO.LerUtilmaJogada(codigo);
+				
+				//LerUtilmaJogada
+				
+				// NA TELA JOGO MOSTRA QUAL É O JOGADOR
+				//Tela_jogo.lblqualjogador.setText(jgdao.BuscaCodigoJogador(txt_jogador.getText()));
+				Tela_jogo.lblqualjogador.setText(jg.getNome());
+				 dificu = String.valueOf(comboBox.getSelectedItem()); // SELECIONA A DIFICULDADE
+					Tela_jogo.jogador = jg;
+				Tela_jogo.setVisible(true); // ABRE A TELA JOGO
+				cj.pegaDificuldade(dificu);
+				ControleJogo.dificuldadee = dificu;
+				//Tela_jogo.CodigoJogador = Integer.parseInt(txt_jogador.getText());
+			
+			}
+		});
+		btnNewButton_1.setBackground(new Color(240, 248, 255));
+		btnNewButton_1.setFont(new Font("Verdana", Font.PLAIN, 15));
+		btnNewButton_1.setBounds(50, 127, 143, 41);
+		contentPane.add(btnNewButton_1);
 
 		
 		comboBox.addItem("Facil");
@@ -161,5 +186,4 @@ public class Tela_inicial extends JFrame {
 			}*/
 		
 		}
-	
 }

@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -94,8 +95,9 @@ public class Tela_cadastro extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Jogador jn = new Jogador();
+
 				
-				int comparacao =0;
+				int comparacao =0; // controle se a senha for imcompativel usado para apagar apenas texto das senhas
 				String nome;
 				String idade;
 				
@@ -103,31 +105,37 @@ public class Tela_cadastro extends JFrame {
 				codigo = confcontrole.PegarCodJogador();
 				nome = (txt_nome.getText());
 				//jogador.setNome(nome);
-			jogador.setNome(txt_nome.getText());
+				jogador.setNome(txt_nome.getText());
 				jogador.setCod_jogador(codigo);
 				
 				idade = (txt_idade.getText());
 				jogador.setIdade(idade);
 				jogador.setEmail(txt_email.getText());
-				//comparacao= controlejg.comparaSenha(txt_senha1.getText(), txt_senha2.getText());
+				comparacao= controlejg.comparaSenha(txt_senha1.getText(), txt_senha2.getText());
 			
 				jogador.setSenha(Integer.parseInt(txt_senha1.getText()));
-				controlejg.CadastrarJogador(jogador);
+				
 				
 				listadejogador.add(jogador);
 				
 				//for(int cont = 0;cont < listadejogador.size();cont++){
-					lista.addElement(jogador.getCod_jogador()+"      "+jogador.getNome()+"      "+jogador.getIdade()+"    "+jogador.getEmail()+ "   "+jogador.getPontuacao());
+					
 				//	lista.addElement(listadejogador.get(cont).getNome()+"    "+listadejogador.get(cont).getIdade());
 					//jogadordao.Salvar(jogador);
 					
 				//lista.set(index, nome);
+					if(comparacao == 1) {
+						txt_senha1.setText(null);
+						txt_senha2.setText(null);
+					}else {
+						lista.addElement(jogador.getCod_jogador()+"      "+jogador.getNome()+"      "+jogador.getIdade()+"    "+jogador.getEmail()+ "   "+jogador.getPontuacao());
+						controlejg.CadastrarJogador(jogador);
 				txt_nome.setText(null);
 				txt_idade.setText(null);
 				txt_email.setText(null);
 				txt_senha1.setText(null);
 				txt_senha2.setText(null);
-				
+					}
 			}
 		});
 		btnCadastrar.setBounds(235, 219, 89, 23);
@@ -160,7 +168,7 @@ public class Tela_cadastro extends JFrame {
 		lblsenha1.setBounds(22, 179, 46, 14);
 		contentPane.add(lblsenha1);
 		
-		txt_senha1 = new JTextField();
+		txt_senha1 = new JPasswordField();
 		txt_senha1.setColumns(10);
 		txt_senha1.setBounds(123, 180, 86, 20);
 		contentPane.add(txt_senha1);
@@ -169,7 +177,7 @@ public class Tela_cadastro extends JFrame {
 		lblConfirmarSenha.setBounds(22, 212, 109, 20);
 		contentPane.add(lblConfirmarSenha);
 		
-		txt_senha2 = new JTextField();
+		txt_senha2 = new JPasswordField();
 		txt_senha2.setColumns(10);
 		txt_senha2.setBounds(123, 212, 86, 20);
 		contentPane.add(txt_senha2);

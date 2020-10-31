@@ -51,7 +51,7 @@ public class JogadorDAO {
 				out.close();
 
 				// Exibe caixa de Dialogo.
-				JOptionPane.showMessageDialog(null, "Arquivo gerado e conte�do gravado com sucesso!");
+				//JOptionPane.showMessageDialog(null, "Arquivo gerado e conte�do gravado com sucesso!");
 
 			} catch (IOException Erro) {
 				JOptionPane.showMessageDialog(null, "Erro ao Gravar no Arquivo" + Erro);
@@ -60,7 +60,7 @@ public class JogadorDAO {
 			
 		}
 		
-		public Jogador Logar(String nome) {
+		public Jogador Logar(String nome, String senha) {
 
 					try {
 				
@@ -81,7 +81,7 @@ public class JogadorDAO {
 						
 						jg.setSenha(Integer.parseInt(br.readLine()));
 						System.out.println(jg);
-						JOptionPane.showMessageDialog(null, "Bem vindo de volta "+jg.getNome());
+						
 				
 					} catch (IOException Erro) {
 						//JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
@@ -207,7 +207,7 @@ public class JogadorDAO {
 				out.close();
 
 				
-				JOptionPane.showMessageDialog(null, "Arquivo gerado e conte�do gravado com sucesso!");
+		//		JOptionPane.showMessageDialog(null, "Arquivo gerado e conte�do gravado com sucesso!");
 
 			} catch (IOException Erro) {
 				JOptionPane.showMessageDialog(null, "Erro ao Gravar no Arquivo" + Erro);

@@ -73,6 +73,7 @@ public class ControleJogo {
 			public int Vida(int vidaRecebida, Jogador jogador,Historico historico,ArrayList histo,int contadorVez,ArrayList novasequencia) {
 				
 				vidatotal = vidatotal - vidaRecebida;
+			
 				System.out.println("total vida "+vidatotal);
 				if(vidatotal == 0 ) {
 					System.out.println("acabooo");
@@ -83,13 +84,21 @@ public class ControleJogo {
 					Tela_jogo.vida3.setVisible(false);
 					Salvar(jogador,historico,histo,contadorVez);
 					MaiorSequencia(novasequencia);
+					Tela_jogo.btn_start.setText("Jogar Denovo");
+					Tela_jogo.reiniciar = 1;
 					//Tela_jogo.
 				}else if(vidatotal == 1) {
 					Tela_jogo.vida1.setVisible(false);
 					Tela_jogo.vida2.setVisible(false);
 					
+					
 				}else if(vidatotal == 2) {
 					Tela_jogo.vida1.setVisible(false);
+					Tela_jogo.btn_start.setText("Continuar");
+				}else if(vidatotal == 3) {
+					Tela_jogo.vida1.setVisible(true); // controla as vidas que mostra na tela jogo
+					Tela_jogo.vida2.setVisible(true);
+					Tela_jogo.vida3.setVisible(true);
 				}
 				
 				
@@ -155,6 +164,12 @@ public class ControleJogo {
 				return maior;
 			}
 			
+		
+			public void SalvarJogada(ArrayList lista, String cod) {
+				
+				historicodao.gravar(lista, cod);
+				JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
+			}
 			
 		}
 	
