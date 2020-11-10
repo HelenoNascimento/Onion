@@ -26,6 +26,10 @@ public class ConfiguracaoControle {
 	public void CriarPasta() {
 		confdao.CriarPastas();
 	}
+	public void CriarConfig() {
+		confdao.criarconf();
+		
+	}
 	
 	
 

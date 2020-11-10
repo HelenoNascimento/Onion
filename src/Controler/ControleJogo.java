@@ -127,14 +127,14 @@ public class ControleJogo {
 				historico.setCod_jogador(jogador.getCod_jogador());
 				historico.setDate(testedata);
 				historico.setN_sequencia(contadorVez-1);
-				historico.setPontos(contadorVez*2);
+				historico.setPontos(jogador.getPontuacao());
 
 				int t = histo.size();
 				t = t-1;
 				histo.remove(t);
 				
 				
-				jogador.setPontuacao(200);
+				//jogador.setPontuacao(200);
 				jgdao.Salvar(jogador);
 				jgdao.Cadastrar(jogador);
 				historicodao.gravar(histo,Integer.toString(jogador.getCod_jogador()));
@@ -155,6 +155,9 @@ public class ControleJogo {
 				if(sequencianova >antiga) {
 				historicodao.MaiorSequencia(novasequencia);
 				}
+				
+			}
+			public void JogarSemCadastro() {
 				
 			}
 			

@@ -29,7 +29,7 @@ public class ConfiguracaoDAO {
 			out.close();
 
 			// Exibe caixa de Dialogo.
-			JOptionPane.showMessageDialog(null, "Arquivo gerado e conte�do gravado com sucesso!");
+			//JOptionPane.showMessageDialog(null, "Arquivo gerado e conte�do gravado com sucesso!");
 
 		} catch (IOException Erro) {
 			JOptionPane.showMessageDialog(null, "Erro ao Gravar no Arquivo" + Erro);
@@ -42,7 +42,7 @@ public class ConfiguracaoDAO {
 	
 	
 	public int PegarCodHistorico() {
-		int cod_historico = -1;
+		int cod_historico = 0;
 	
 		try {
 
@@ -56,7 +56,7 @@ public class ConfiguracaoDAO {
 			//tfEmail.setText(br.readLine());
 
 		} catch (IOException Erro) {
-			JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+			//JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
 		}
 		
 		return  cod_historico;
@@ -64,7 +64,7 @@ public class ConfiguracaoDAO {
 	
 	
 	public int PegarCodJogador() {
-		int cod_jogador = -1;
+		int cod_jogador = 0;
 	
 		try {
 
@@ -79,7 +79,7 @@ public class ConfiguracaoDAO {
 			//tfEmail.setText(br.readLine());
 
 		} catch (IOException Erro) {
-			JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+			//JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
 		}
 		
 		return  cod_jogador;
@@ -94,4 +94,19 @@ public class ConfiguracaoDAO {
 		    diretorio3.mkdirs();
 		}
 
+		
+		public void criarconf( ) {
+			try {
+				PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\configuracao.txt");// Define
+
+				// Fecha Conex�o.
+				out.close();
+
+
+			} catch (IOException Erro) {
+				JOptionPane.showMessageDialog(null, "Erro ao Gravar no Arquivo" + Erro);
+			}
+			
+			
+		}
 }

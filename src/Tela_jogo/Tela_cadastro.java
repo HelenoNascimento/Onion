@@ -22,6 +22,8 @@ import br.edu.facear.dao.JogadorDAO;
 import br.edu.facear.entity.Jogador;
 
 public class Tela_cadastro extends JFrame {
+	//Tela_login telalogin = new Tela_login();
+	
 	 Jogador jogador = new Jogador();
 	private JPanel contentPane;
 	private JTextField txt_nome;
@@ -57,7 +59,7 @@ public class Tela_cadastro extends JFrame {
 	public Tela_cadastro() {
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 605, 316);
+		setBounds(100, 100, 605, 346);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -128,8 +130,12 @@ public class Tela_cadastro extends JFrame {
 						txt_senha1.setText(null);
 						txt_senha2.setText(null);
 					}else {
+					
+						
 						lista.addElement(jogador.getCod_jogador()+"      "+jogador.getNome()+"      "+jogador.getIdade()+"    "+jogador.getEmail()+ "   "+jogador.getPontuacao());
 						controlejg.CadastrarJogador(jogador);
+						
+						
 				txt_nome.setText(null);
 				txt_idade.setText(null);
 				txt_email.setText(null);
@@ -138,7 +144,7 @@ public class Tela_cadastro extends JFrame {
 					}
 			}
 		});
-		btnCadastrar.setBounds(235, 219, 89, 23);
+		btnCadastrar.setBounds(22, 261, 89, 23);
 		contentPane.add(btnCadastrar);
 		lista = new DefaultListModel();
 		JList list = new JList(lista);
@@ -156,12 +162,10 @@ public class Tela_cadastro extends JFrame {
 					//lista.addElement(jogador.getNome()+"      "+jogador.getIdade()+"    "+jogador.getEmail()+ "   "+jogador.getPontuacao());
 					//lista.addElement(listadejogador.get(cont).getNome()+"    "+listadejogador.get(cont).getIdade());
 					}
-			Tela_jogadores tela_jogadores = new Tela_jogadores();
 			
-			tela_jogadores.setVisible(true);
 			}
 		});
-		btnJ_jogadores.setBounds(372, 219, 89, 23);
+		btnJ_jogadores.setBounds(402, 261, 89, 23);
 		contentPane.add(btnJ_jogadores);
 		
 		JLabel lblsenha1 = new JLabel("Senha");
@@ -181,5 +185,18 @@ public class Tela_cadastro extends JFrame {
 		txt_senha2.setColumns(10);
 		txt_senha2.setBounds(123, 212, 86, 20);
 		contentPane.add(txt_senha2);
+		
+		JButton bnt_voltar = new JButton("Voltar");
+		bnt_voltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Tela_login tela = new Tela_login();
+				
+				dispose();
+				tela.setVisible(true);
+				
+			}
+		});
+		bnt_voltar.setBounds(140, 261, 89, 23);
+		contentPane.add(bnt_voltar);
 	}
 }

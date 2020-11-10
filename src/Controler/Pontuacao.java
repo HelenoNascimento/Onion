@@ -8,19 +8,19 @@ public class Pontuacao {
 	
 	int pontuacao;
 	
-	public  int SomaPonto (int dificuldade, int pontos) {
+	public  int SomaPonto (String dificuldade, int pontos) {
 		
-		if (dificuldade == 1) {
-			pontuacao = 1 * pontos;
+		if (dificuldade.contentEquals("Facil")) {
+			pontuacao = 5 * pontos;
 			
-		}else if (dificuldade ==2) {
-			pontuacao = 2 * pontos;
+		}else if (dificuldade.contentEquals("Normal")) {
+			pontuacao = 10 * pontos;
 			
-		}else if(dificuldade ==3) {
-			pontuacao = 3 * pontos;
+		}else if(dificuldade.contentEquals("Dificil")) {
+			pontuacao = 15 * pontos;
 			
-		}else if(dificuldade ==4) {
-			pontuacao = 4 * pontos;
+		}else if(dificuldade.contentEquals("Hardcore")) {
+			pontuacao = 20 * pontos;
 			
 		}
 			

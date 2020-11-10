@@ -39,6 +39,7 @@ public class ControleJogador {
 		jgdao.Salvar(jogador);
 		jgdao.Cadastrar(jogador);
 		confcontrole.ControleCodHistorico(1,1);
+		JOptionPane.showMessageDialog(null, "Jogador Cadastrado com sucesso");
 		}
 	}
 		
@@ -52,6 +53,15 @@ public class ControleJogador {
 		
 		
 	
+	}
+	
+	public Jogador JogarSemCadastro(){
+	jogador.setCod_jogador(0);
+	jogador.setEmail("JogadorSemCadastro@sem.com");
+	jogador.setIdade("15");
+	jogador.setNome("Desconhecido");
+		
+		return jogador;
 	}
 	
 

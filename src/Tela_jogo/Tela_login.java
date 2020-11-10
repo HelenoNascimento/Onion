@@ -19,13 +19,17 @@ import javax.swing.border.EmptyBorder;
 
 import Controler.ConfiguracaoControle;
 import Controler.ControleJogador;
+import Controler.ControleJogo;
 import br.edu.facear.dao.JogadorDAO;
 import br.edu.facear.entity.Jogador;
 
 public class Tela_login extends JFrame {
 	Tela_inicial telaInicial = new Tela_inicial();
 	Tela_cadastro telacadastro = new Tela_cadastro();
+	//Tela_login tela= new Tela_login();
 	ConfiguracaoControle conficotrole = new ConfiguracaoControle(); 
+	
+	JFrame frame = new JFrame();
 	
 	private JButton btn1 = new JButton("");
 	private JButton btn2 = new JButton("");
@@ -45,6 +49,7 @@ public class Tela_login extends JFrame {
 	JogadorDAO jgdao = new JogadorDAO();
 	Jogador jg = new Jogador();
 	ControleJogador controlejg = new ControleJogador();
+	ControleJogo controle = new ControleJogo();
 	/**
 	 * Launch the application.
 	 */
@@ -52,12 +57,12 @@ public class Tela_login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+
+				//	Tela_login window = new Tela_login();
+					//window.setVisible(true);
 					
-				
-					
-					
-					Tela_login frame = new Tela_login();
-					frame.setVisible(true);
+				Tela_login frame = new Tela_login();
+				frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -72,7 +77,8 @@ public class Tela_login extends JFrame {
 		//teste();
 		teste1();
 		conficotrole.CriarPasta();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//conficotrole.CriarConfig();
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 606, 381);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -92,7 +98,7 @@ public class Tela_login extends JFrame {
 		JButton btn_Entrar = new JButton("Entrar");
 		btn_Entrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				//frame.setVisible(false);
 				//jg = jgdao.Logar(txt_usuario.getText());
 				jg = controlejg.Logar(txt_usuario.getText(), txt_senha.getText());
 				
@@ -106,7 +112,13 @@ public class Tela_login extends JFrame {
 					telaInicial.setVisible(true);
 					telaInicial.lbljogador.setText(jg.getNome());
 					telaInicial.jg = jg;
+					dispose();
 					JOptionPane.showMessageDialog(null, "Bem vindo de volta "+jg.getNome());
+					//Tela_login.setVisible(false);
+					//tela.setVisible(true);
+					
+					
+					//Runtime.getRuntime().exit(0);
 				}else {
 					JOptionPane.showMessageDialog(null, "Usuario ou senha incorreto ");
 					txt_senha.setText(null);
@@ -120,7 +132,10 @@ public class Tela_login extends JFrame {
 		JButton btn_cadastrar = new JButton("Cadastrar");
 		btn_cadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//frame.setVisible(false);
+				dispose();
 				telacadastro.setVisible(true);
+				
 			}
 		});
 		btn_cadastrar.setBounds(149, 239, 94, 33);
@@ -128,6 +143,15 @@ public class Tela_login extends JFrame {
 		contentPane.add(btn_cadastrar);
 		
 		JButton btn_jogarSemCadastro = new JButton("Jogar Sem Cadastro");
+		btn_jogarSemCadastro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				jg = controlejg.JogarSemCadastro();
+				telaInicial.jg = jg;
+				telaInicial.lbljogador.setText(jg.getNome());
+				telaInicial.setVisible(true);
+			}
+		});
 		btn_jogarSemCadastro.setForeground(new Color(255, 255, 255));
 		btn_jogarSemCadastro.setFont(new Font("Verdana", Font.PLAIN, 15));
 		btn_jogarSemCadastro.setBounds(310, 228, 206, 54);

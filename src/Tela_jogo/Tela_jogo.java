@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controler.ControleJogo;
+import Controler.Pontuacao;
 import br.edu.facear.dao.HistoricoDAO;
 import br.edu.facear.dao.JogadorDAO;
 import br.edu.facear.entity.Historico;
@@ -53,6 +54,8 @@ public class Tela_jogo extends JFrame {
 	ControleJogo controle = new ControleJogo();
 	JogadorDAO jogadordao = new JogadorDAO();
 	HistoricoDAO historicodao = new HistoricoDAO();
+	Pontuacao pts = new Pontuacao();
+	
 	public int Continuar = 0;
 	int contadorVez = 0;
 	int numero;
@@ -65,6 +68,7 @@ public class Tela_jogo extends JFrame {
 	private final JLabel lblqualdificuldade = new JLabel("Dificuldade: ");
 	public static JLabel lbldificuldade = new JLabel("");
 	public static int CodigoJogador;
+	public static String dificuldade;
 	public static int reiniciar =0;
 	private final JButton btnSalvar = new JButton("Salvar");
 	
@@ -123,8 +127,10 @@ public class Tela_jogo extends JFrame {
 						
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
-						controle.Vida(1,jogador,historico,MaquinaLista,contadorVez,MaquinaLista); // CASO O JOGADOR ERRAR ELE PERDE UMA VIDA
 						int pont = array_aux.length;
+						jogador.setPontuacao(pts.SomaPonto(dificuldade, contadorVez-1));
+						controle.Vida(1,jogador,historico,MaquinaLista,contadorVez,MaquinaLista); // CASO O JOGADOR ERRAR ELE PERDE UMA VIDA
+						
 					//	jogador.setPontuacao(contadorVez);
 					//	jogadordao.Salvar(jogador);
 						
@@ -164,9 +170,11 @@ public class Tela_jogo extends JFrame {
 						
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
-						controle.Vida(1,jogador,historico,MaquinaLista,contadorVez,MaquinaLista);
 						int pont = array_aux.length;
-						jogador.setPontuacao(contadorVez);
+						System.out.println("pontuação :"+pts.SomaPonto(dificuldade, pont));
+						jogador.setPontuacao(pts.SomaPonto(dificuldade, contadorVez-1));
+						controle.Vida(1,jogador,historico,MaquinaLista,contadorVez,MaquinaLista);
+						
 						//jogadordao.Salvar(jogador);
 					//	SalvaHistorico();
 						contadorVez =0;
@@ -201,8 +209,11 @@ public class Tela_jogo extends JFrame {
 						
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
-						controle.Vida(1,jogador,historico,MaquinaLista,contadorVez,MaquinaLista);
 						int pont = array_aux.length;
+						System.out.println("pontuação :"+pts.SomaPonto(dificuldade, pont));
+						jogador.setPontuacao(pts.SomaPonto(dificuldade, contadorVez-1));
+						controle.Vida(1,jogador,historico,MaquinaLista,contadorVez,MaquinaLista);
+						//int pont = array_aux.length;
 						//jogador.setPontuacao(contadorVez);
 						//jogadordao.Salvar(jogador);
 					//	SalvaHistorico();
@@ -237,8 +248,10 @@ public class Tela_jogo extends JFrame {
 					
 					}else {
 						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
-						controle.Vida(1,jogador,historico,MaquinaLista,contadorVez,MaquinaLista);
 						int pont = array_aux.length;
+						System.out.println("pontuação :"+pts.SomaPonto(dificuldade, pont));
+						jogador.setPontuacao(pts.SomaPonto(dificuldade, contadorVez-1));
+						controle.Vida(1,jogador,historico,MaquinaLista,contadorVez,MaquinaLista);
 						//jogador.setPontuacao(contadorVez);
 					//	jogadordao.Salvar(jogador);
 					//	SalvaHistorico();
@@ -409,6 +422,10 @@ public class Tela_jogo extends JFrame {
 				controle.MaiorSequencia(MaquinaLista);
 				String cod = Integer.toString(jogador.getCod_jogador());
 				controle.SalvarJogada(MaquinaLista, cod);
+				
+				Tela_inicial inicial = new Tela_inicial();
+				dispose();
+				inicial.setVisible(true);
 				
 				
 			}

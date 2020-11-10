@@ -171,7 +171,7 @@ public static void MaiorSequencia(ArrayList texto){
 				// Fecha Conex�o.
 			out.close();
 				// Exibe caixa de Dialogo.
-		//	JOptionPane.showMessageDialog(null, "Parabeeens ah um novo record!");
+		JOptionPane.showMessageDialog(null, "Parabeeens ah um novo record!");
 			//return texto;
 			
 		} catch (IOException Erro) {

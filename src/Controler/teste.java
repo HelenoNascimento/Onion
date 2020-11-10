@@ -11,7 +11,7 @@ public class teste {
 		
 		
 		
-		int Dificuldade =  2;
+		String Dificuldade =  "2";
 		int Pontos =50;
 		int resultado ;
 		resultado = pt.SomaPonto(Dificuldade, Pontos);

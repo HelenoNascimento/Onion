@@ -39,6 +39,7 @@ public class Tela_inicial extends JFrame {
 	 Dificuldade df = new Dificuldade();
 	 JogadorDAO jgdao = new JogadorDAO();
 	 Jogador jg  = new Jogador();
+	 public static JLabel lbldificu = new JLabel("Dificuldade");
 	 public static JLabel lbljogador = new JLabel("");
 	 //String dificuldade = null;
 	/**
@@ -74,7 +75,7 @@ public class Tela_inicial extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 521, 342);
+		setBounds(100, 100, 565, 369);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -92,6 +93,7 @@ public class Tela_inicial extends JFrame {
 				Tela_jogo.setVisible(true); // ABRE A TELA JOGO
 				cj.pegaDificuldade(dificu);
 				ControleJogo.dificuldadee = dificu;
+				Tela_jogo.dificuldade = dificu;
 				//Tela_jogo.CodigoJogador = Integer.parseInt(txt_jogador.getText());
 				Tela_jogo.jogador = jg;
 				
@@ -121,12 +123,17 @@ public class Tela_inicial extends JFrame {
 		});
 		btnJogadores.setBounds(50, 209, 119, 23);
 		contentPane.add(btnJogadores);
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			
+			}
+		});
 		
 		//comboBox = 
 		
 		
 		comboBox.setToolTipText("aaa\r\naaa\r\naa");
-		comboBox.setBounds(282, 96, 102, 23);
+		comboBox.setBounds(419, 58, 102, 23);
 		contentPane.add(comboBox);
 		lbljogador.setFont(new Font("Verdana", Font.PLAIN, 25));
 	
@@ -159,6 +166,7 @@ public class Tela_inicial extends JFrame {
 				Tela_jogo.lblqualjogador.setText(jg.getNome());
 				 dificu = String.valueOf(comboBox.getSelectedItem()); // SELECIONA A DIFICULDADE
 					Tela_jogo.jogador = jg;
+					Tela_jogo.dificuldade = dificu;
 				Tela_jogo.setVisible(true); // ABRE A TELA JOGO
 				cj.pegaDificuldade(dificu);
 				ControleJogo.dificuldadee = dificu;
@@ -170,6 +178,25 @@ public class Tela_inicial extends JFrame {
 		btnNewButton_1.setFont(new Font("Verdana", Font.PLAIN, 15));
 		btnNewButton_1.setBounds(50, 127, 143, 41);
 		contentPane.add(btnNewButton_1);
+		
+		JButton btn_sair = new JButton("SAIR");
+		btn_sair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Tela_login tela = new Tela_login();
+				dispose();
+				tela.setVisible(true);
+			}
+		});
+		btn_sair.setBackground(Color.RED);
+		btn_sair.setForeground(Color.WHITE);
+		btn_sair.setFont(new Font("Verdana", Font.PLAIN, 18));
+		btn_sair.setBounds(450, 277, 89, 42);
+		contentPane.add(btn_sair);
+		
+		
+		lbldificu.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lbldificu.setBounds(300, 58, 114, 23);
+		contentPane.add(lbldificu);
 
 		
 		comboBox.addItem("Facil");
