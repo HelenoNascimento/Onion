@@ -1,12 +1,14 @@
 package Controler;
 
-import br.edu.facear.entity.Dificuldade;
-
 public class teste {
+	ControleJogador controlejg = new ControleJogador();
 
 	public static void main(String[] args) {
+		
+		
+		
 		// TODO Auto-generated method stub
-		Dificuldade df = new Dificuldade();
+		/*Dificuldade df = new Dificuldade();
 		Pontuacao pt = new Pontuacao();
 		
 		
@@ -17,7 +19,8 @@ public class teste {
 		resultado = pt.SomaPonto(Dificuldade, Pontos);
 		
 		System.out.println(resultado);
-
+*/
+		
 	}
 
 }

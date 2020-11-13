@@ -20,6 +20,7 @@ public class ControleJogo {
 	JogadorDAO jgdao = new JogadorDAO();
 	HistoricoDAO historicodao = new HistoricoDAO();
 	ConfiguracaoControle conficotrole = new ConfiguracaoControle();
+	ControleJogador controlejg = new ControleJogador();
 	//Tela_inicial telainicial = new Tela_inicial();
 	int pontuacao;
 	int pontos;
@@ -117,6 +118,7 @@ public class ControleJogo {
 				String testedata = dStr.toString();
 				historico.setCod_Dificuldade(0);
 				
+				controlejg.SalvaJogadorTop(jogador);
 				historico.setCod_historico(conficotrole.PegarCodHistorico());
 				if(historico.getCod_historico() <0) {
 					historico.setCod_historico(0);
@@ -167,6 +169,11 @@ public class ControleJogo {
 				return maior;
 			}
 			
+			//metodo que vai na classe ControleJogador e aciona o metodo listar top 3 
+			public void listartop3 () {
+				
+				controlejg.listarTop();
+			}
 		
 			public void SalvarJogada(ArrayList lista, String cod) {
 				

@@ -89,9 +89,11 @@ public class ConfiguracaoDAO {
 			File diretorio = new File("C:\\Users\\helen\\Documents/Onion/Historico");
 			File diretorio2 = new File("C:\\Users\\helen\\Documents\\Onion/HistoricoSequencia");
 			File diretorio3 = new File("C:\\Users\\helen\\Documents\\Onion/Jogadores");
+			File diretorio4 = new File("C:\\Users\\helen\\Documents\\Onion/Top3");
 		    diretorio.mkdirs();
 		    diretorio2.mkdirs();
 		    diretorio3.mkdirs();
+		    diretorio4.mkdirs();
 		}
 
 		

@@ -92,6 +92,7 @@ public class Tela_inicial extends JFrame {
 				 dificu = String.valueOf(comboBox.getSelectedItem()); // SELECIONA A DIFICULDADE
 				Tela_jogo.setVisible(true); // ABRE A TELA JOGO
 				cj.pegaDificuldade(dificu);
+				cj.listartop3();
 				ControleJogo.dificuldadee = dificu;
 				Tela_jogo.dificuldade = dificu;
 				//Tela_jogo.CodigoJogador = Integer.parseInt(txt_jogador.getText());
@@ -160,7 +161,7 @@ public class Tela_inicial extends JFrame {
 				//Tela_jogo.ListaSalvo = HistoricoDAO.LerUtilmaJogada(codigo);
 				
 				//LerUtilmaJogada
-				
+				cj.listartop3();
 				// NA TELA JOGO MOSTRA QUAL É O JOGADOR
 				//Tela_jogo.lblqualjogador.setText(jgdao.BuscaCodigoJogador(txt_jogador.getText()));
 				Tela_jogo.lblqualjogador.setText(jg.getNome());

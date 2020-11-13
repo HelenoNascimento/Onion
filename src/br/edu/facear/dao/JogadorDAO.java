@@ -20,6 +20,10 @@ import br.edu.facear.entity.Jogador;
 
 public class JogadorDAO {
 	Jogador jg = new Jogador();
+	Jogador top1 =new Jogador();
+	Jogador top2 =new Jogador();
+	Jogador top3 =new Jogador();
+	
 	
 	ArrayList  <Jogador> listadejogador= new ArrayList();
 
@@ -216,5 +220,170 @@ public class JogadorDAO {
 			
 		}
 		
+		// ******************ESSE METODO VAI SALVAR O TOP 1 DOS TOP3 JOGADORES*********************************
 		
+		public void CadastrarJogadorTop1(Jogador jg) {
+			try {
+				// Inst�ncia de um Objeto da Class Java(PrintWriter
+				// "para Grava��o do Arquivo").
+				PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Top3\\1.txt");// Define
+				
+				out.println(jg.getCod_jogador());
+				out.println(jg.getNome());
+				out.println(jg.getEmail());
+				out.println(jg.getIdade());
+				out.println(jg.getPontuacao());
+				out.println(jg.getSenha());
+
+				// Fecha Conex�o.
+				out.close();
+
+		//		JOptionPane.showMessageDialog(null, "Arquivo gerado e conte�do gravado com sucesso!");
+
+			} catch (IOException Erro) {
+				JOptionPane.showMessageDialog(null, "Erro ao Gravar no Arquivo" + Erro);
+			}
+			
+			
+		}
+		
+		// ******************ESSE METODO VAI SALVAR O TOP 2 DOS TOP3 JOGADORES*********************************
+		
+		public void CadastrarJogadorTop2(Jogador jg) {
+			try {
+				// Inst�ncia de um Objeto da Class Java(PrintWriter
+				// "para Grava��o do Arquivo").
+				PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Top3\\2.txt");// Define
+				
+				out.println(jg.getCod_jogador());
+				out.println(jg.getNome());
+				out.println(jg.getEmail());
+				out.println(jg.getIdade());
+				out.println(jg.getPontuacao());
+				out.println(jg.getSenha());
+
+				// Fecha Conex�o.
+				out.close();
+
+		//		JOptionPane.showMessageDialog(null, "Arquivo gerado e conte�do gravado com sucesso!");
+
+			} catch (IOException Erro) {
+				JOptionPane.showMessageDialog(null, "Erro ao Gravar no Arquivo" + Erro);
+			}
+			
+			
+		}		
+		// ******************ESSE METODO VAI SALVAR O TOP 3 DOS TOP3 JOGADORES*********************************
+		
+		public void CadastrarJogadorTop3(Jogador jg) {
+			try {
+				// Inst�ncia de um Objeto da Class Java(PrintWriter
+				// "para Grava��o do Arquivo").
+				PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Top3\\3.txt");// Define
+				
+				out.println(jg.getCod_jogador());
+				out.println(jg.getNome());
+				out.println(jg.getEmail());
+				out.println(jg.getIdade());
+				out.println(jg.getPontuacao());
+				out.println(jg.getSenha());
+
+				// Fecha Conex�o.
+				out.close();
+
+		//		JOptionPane.showMessageDialog(null, "Arquivo gerado e conte�do gravado com sucesso!");
+
+			} catch (IOException Erro) {
+				JOptionPane.showMessageDialog(null, "Erro ao Gravar no Arquivo" + Erro);
+			}
+			
+			
+		}	
+		
+		//***************************metodos buscam os jogadores top **********************
+		// BUSCA TOP1
+		public  Jogador Buscatop1() {
+
+
+			try {
+	
+				BufferedReader br = new BufferedReader(
+						new FileReader("C:\\Users\\helen\\Documents\\Onion\\Top3\\1.txt"));
+				int codigo = Integer.parseInt(br.readLine());
+				top1.setCod_jogador(codigo);
+				top1.setNome(br.readLine());
+				top1.setEmail(br.readLine());
+				top1.setIdade(br.readLine());
+				
+				int pontuacao = Integer.parseInt(br.readLine());
+				top1.setPontuacao(pontuacao);
+				
+				System.out.println(top1);
+				
+				int senha = Integer.parseInt(br.readLine());
+				top1.setSenha(senha);
+
+			} catch (IOException Erro) {
+				JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+			}
+			
+			return top1;
+		}
+		// BUSCA TOP2
+		public  Jogador Buscatop2() {
+			String numjogador = null;
+
+			try {
+	
+				BufferedReader br = new BufferedReader(
+						new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\Top3\\\\2.txt"));
+				int codigo = Integer.parseInt(br.readLine());
+				top2.setCod_jogador(codigo);
+				top2.setNome(br.readLine());
+				top2.setEmail(br.readLine());
+				top2.setIdade(br.readLine());
+				
+				int pontuacao = Integer.parseInt(br.readLine());
+				top2.setPontuacao(pontuacao);
+				
+				System.out.println(top2);
+				
+				int senha = Integer.parseInt(br.readLine());
+				top2.setSenha(senha);
+
+			} catch (IOException Erro) {
+				JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+			}
+			
+			return top2;
+		}
+		
+		// BUSCA TOP3
+		public  Jogador Buscatop3() {
+			String numjogador = null;
+
+			try {
+	
+				BufferedReader br = new BufferedReader(
+						new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\Top3\\\\3.txt"));
+				int codigo = Integer.parseInt(br.readLine());
+				top3.setCod_jogador(codigo);
+				top3.setNome(br.readLine());
+				top3.setEmail(br.readLine());
+				top3.setIdade(br.readLine());
+				
+				int pontuacao = Integer.parseInt(br.readLine());
+				top3.setPontuacao(pontuacao);
+				
+				System.out.println(top3);
+				
+				int senha = Integer.parseInt(br.readLine());
+				top3.setSenha(senha);
+
+			} catch (IOException Erro) {
+				JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+			}
+			
+			return top3;
+		}
 }

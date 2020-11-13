@@ -43,6 +43,14 @@ public class Tela_jogo extends JFrame {
 	public static JButton btn_start = new JButton("Iniciar");
 	
 	public static JLabel lblSuaVez = new JLabel("Sua Vez!!");
+	
+	public static JLabel jg1 = new JLabel("");
+	public static JLabel jg2 = new JLabel("");
+	public static JLabel jg3 = new JLabel("");
+	public static JLabel ptn1 = new JLabel("");
+	public static JLabel pnt2 = new JLabel("");
+	public static JLabel pnt3 = new JLabel("");
+	
 	String[] array_aux = new String[8];
 	JButton[] botoes = {btn1,btn2 , btn3 , btn4};
 	ArrayList <Integer> lista = new ArrayList(); //sequencia do jogador
@@ -102,7 +110,7 @@ public class Tela_jogo extends JFrame {
 		//jogador.setIdade("15");
 		//jogador.setNome("Tiago");
 		//jogador.setCod_jogador(10);
-		setBounds(100, 100, 559, 416);
+		setBounds(100, 100, 838, 419);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -433,6 +441,69 @@ public class Tela_jogo extends JFrame {
 		btnSalvar.setBounds(381, 294, 89, 23);
 		
 		contentPane.add(btnSalvar);
+		
+		JLabel lbltop3 = new JLabel("TOP 3 JOGADORES");
+		lbltop3.setForeground(Color.GREEN);
+		lbltop3.setFont(new Font("Verdana", Font.PLAIN, 25));
+		lbltop3.setBounds(560, 28, 252, 52);
+		contentPane.add(lbltop3);
+		
+		JLabel lbltop1 = new JLabel("1\u00BA");
+		lbltop1.setForeground(Color.BLUE);
+		lbltop1.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lbltop1.setBounds(570, 122, 46, 14);
+		contentPane.add(lbltop1);
+		
+		JLabel lbltop1_1 = new JLabel("2\u00BA");
+		lbltop1_1.setForeground(Color.BLUE);
+		lbltop1_1.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lbltop1_1.setBounds(570, 158, 46, 14);
+		contentPane.add(lbltop1_1);
+		
+		JLabel lbltop1_2 = new JLabel("3\u00BA");
+		lbltop1_2.setForeground(Color.BLUE);
+		lbltop1_2.setFont(new Font("Verdana", Font.PLAIN, 15));
+		lbltop1_2.setBounds(570, 200, 46, 14);
+		contentPane.add(lbltop1_2);
+		
+
+		
+		jg1.setFont(new Font("Verdana", Font.PLAIN, 15));
+		jg1.setBounds(606, 123, 89, 14);
+		contentPane.add(jg1);
+		
+		
+		jg2.setFont(new Font("Verdana", Font.PLAIN, 15));
+		jg2.setBounds(606, 160, 89, 14);
+		contentPane.add(jg2);
+		
+		
+		jg3.setFont(new Font("Verdana", Font.PLAIN, 15));
+		jg3.setBounds(606, 200, 89, 14);
+		contentPane.add(jg3);
+		
+		JLabel lbnomes = new JLabel("Nome:");
+		lbnomes.setBounds(617, 84, 46, 14);
+		contentPane.add(lbnomes);
+		
+		JLabel lblPontos = new JLabel("Pontos:");
+		lblPontos.setBounds(702, 84, 46, 14);
+		contentPane.add(lblPontos);
+		
+		
+		ptn1.setFont(new Font("Verdana", Font.PLAIN, 15));
+		ptn1.setBounds(705, 122, 73, 14);
+		contentPane.add(ptn1);
+		
+		
+		pnt2.setFont(new Font("Verdana", Font.PLAIN, 15));
+		pnt2.setBounds(705, 158, 73, 14);
+		contentPane.add(pnt2);
+		
+		
+		pnt3.setFont(new Font("Verdana", Font.PLAIN, 15));
+		pnt3.setBounds(702, 200, 73, 14);
+		contentPane.add(pnt3);
 		
 	}
 	public void SalvaHistorico() {
