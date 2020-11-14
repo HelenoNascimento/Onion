@@ -20,7 +20,7 @@ public class HistoricoDAO {
 	 static ArrayList <Integer> texto = new ArrayList();
 	 static ArrayList <Integer> Maior = new ArrayList();
 	 static ArrayList <Integer> Salvo = new ArrayList();
-	
+	 
 	public void Salvar(Historico historico) {
 		try {
 			// Inst�ncia de um Objeto da Class Java(PrintWriter
@@ -38,11 +38,11 @@ public class HistoricoDAO {
 																											// criar.
 
 			// Captura o Texto dos JTextField.
-			out.println("Codigo Historico: "+historico.getCod_historico());
-			out.println("Codigo Jogador:"+historico.getCod_jogador());
-			out.println("Data: "+historico.getDate());
-			out.println("Quantidade Sequencia: "+historico.getN_sequencia());
-			out.println("Pontos: "+historico.getPontos());
+			out.println(historico.getCod_historico());
+			out.println(historico.getCod_jogador());
+			out.println(historico.getDate());
+			out.println(historico.getN_sequencia());
+			out.println(historico.getPontos());
 
 			// Fecha Conex�o.
 			out.close();
@@ -240,6 +240,47 @@ public static ArrayList  PegarSalvo (String codigo){
 	}
 	return Salvo;
 	
+}
+
+		public ArrayList ListarHistorico() {
+			ArrayList  <Historico> listahistorico= new ArrayList();
+	for(int i =0 ;i<10; i++) {
+		Historico h = new Historico();
+		System.out.println(i);
+		try {
+
+			BufferedReader br = new BufferedReader(
+					new FileReader("C:\\Users\\helen\\Documents\\Onion\\Historico\\"+i+".txt")); // instancia o objeto da classe File com o caminho do arquivo a ser lido
+	
+					// Ler o conte�do do arquivo e exibe nos JTextField.
+			int codigo = Integer.parseInt(br.readLine());
+			
+			h.setCod_historico(codigo);
+			int cod = Integer.parseInt(br.readLine());
+			
+			h.setCod_jogador(cod);
+		
+			h.setDate(br.readLine());
+			
+			int quantidade = Integer.parseInt(br.readLine());
+			h.setN_sequencia(quantidade);
+		
+			int pontuacao = Integer.parseInt(br.readLine());
+			
+			h.setPontos(pontuacao);
+			
+			listahistorico.add(h);
+			
+		} catch (IOException Erro) {
+			JOptionPane.showMessageDialog(null, i);
+		}
+		
+	}
+	for (int i1 = 0; i1 < listahistorico.size(); i1++) {	
+		
+ 		 System.out.println(listahistorico.get(i1));
+ 	 }
+	return listahistorico;
 }
 	
 }

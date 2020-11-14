@@ -64,6 +64,12 @@ public class Historico {
 		Pontos = pontos;
 	}
 
+	@Override
+	public String toString() {
+		return "Historico [cod_historico=" + cod_historico + ", cod_jogador=" + cod_jogador + ", date=" + date
+				+ ", N_sequencia=" + N_sequencia + ", cod_Dificuldade=" + cod_Dificuldade + ", Pontos=" + Pontos + "]";
+	}
+
 
 
 	
