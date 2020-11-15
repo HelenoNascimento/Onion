@@ -14,30 +14,30 @@ public class Historico {
 		this.cod_historico = cod_historico;
 	}
 
-	private int cod_jogador;
+	private String Nome;
 	
-	private String date;
+	private String Date;
 	
 	private int N_sequencia;
 	
-	private int cod_Dificuldade;
+	private String Dificuldade;
 	
 	private int Pontos;
 	
-	public int getCod_jogador() {
-		return cod_jogador;
+	public String getNome() {
+		return Nome;
 	}
 
-	public void setCod_jogador(int cod_jogador) {
-		this.cod_jogador = cod_jogador;
+	public void setNome(String nome) {
+		this.Nome = nome;
 	}
 
 	public String getDate() {
-		return date;
+		return Date;
 	}
 
 	public void setDate(String date) {
-		this.date = date;
+		this.Date = date;
 	}
 
 	public int getN_sequencia() {
@@ -48,12 +48,12 @@ public class Historico {
 		N_sequencia = n_sequencia;
 	}
 
-	public int getCod_Dificuldade() {
-		return cod_Dificuldade;
+	public String getDificuldade() {
+		return Dificuldade;
 	}
 
-	public void setCod_Dificuldade(int cod_Dificuldade) {
-		this.cod_Dificuldade = cod_Dificuldade;
+	public void setDificuldade(String dificuldade) {
+		this.Dificuldade = dificuldade;
 	}
 
 	public int getPontos() {
@@ -66,8 +66,8 @@ public class Historico {
 
 	@Override
 	public String toString() {
-		return "Historico [cod_historico=" + cod_historico + ", cod_jogador=" + cod_jogador + ", date=" + date
-				+ ", N_sequencia=" + N_sequencia + ", cod_Dificuldade=" + cod_Dificuldade + ", Pontos=" + Pontos + "]";
+		return "Historico [cod_historico=" + cod_historico + ", cod_jogador=" + Nome + ", date=" + Date
+				+ ", N_sequencia=" + N_sequencia + ", cod_Dificuldade=" + Dificuldade + ", Pontos=" + Pontos + "]";
 	}
 
 

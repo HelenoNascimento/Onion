@@ -24,6 +24,8 @@ import br.edu.facear.dao.HistoricoDAO;
 import br.edu.facear.dao.JogadorDAO;
 import br.edu.facear.entity.Historico;
 import br.edu.facear.entity.Jogador;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class Tela_jogo extends JFrame {
 
@@ -505,6 +507,10 @@ public class Tela_jogo extends JFrame {
 		pnt3.setBounds(702, 200, 73, 14);
 		contentPane.add(pnt3);
 		
+		Component horizontalStrut = Box.createHorizontalStrut(20);
+		horizontalStrut.setBounds(549, 267, 184, 77);
+		contentPane.add(horizontalStrut);
+		
 	}
 	public void SalvaHistorico() {
 		Date data = new Date(System.currentTimeMillis());
@@ -515,9 +521,9 @@ public class Tela_jogo extends JFrame {
 		
 		// teste para salvar historico
 		String testedata = dStr.toString();
-		historico.setCod_Dificuldade(2);
+		///historico.setCod_Dificuldade(2);
 		historico.setCod_historico(1);
-		historico.setCod_jogador(5);
+		//historico.setCod_jogador(5);
 		historico.setDate(testedata);
 		historico.setN_sequencia(contadorVez-1);
 		historico.setPontos(contadorVez*2);

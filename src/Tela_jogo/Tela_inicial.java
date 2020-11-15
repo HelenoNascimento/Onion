@@ -25,10 +25,17 @@ import java.awt.Color;
 import javax.swing.UIManager;
 
 public class Tela_inicial extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Tela_cadastro Tela_cadastro = new Tela_cadastro();
-	private Tela_jogo  Tela_jogo = new Tela_jogo();
+	
 	private Tela_jogadores Tela_jogadores = new Tela_jogadores();
+	private Tela_Historico tela_historico = new Tela_Historico();
+	private Tela_Pontos tela_pontos = new Tela_Pontos();
 	ConfiguracaoControle conficotrole = new ConfiguracaoControle();
+	private Tela_jogo  Tela_jogo = new Tela_jogo();
 	
 	private JPanel contentPane;
 	 private List<Dificuldade> lista;
@@ -65,6 +72,9 @@ public class Tela_inicial extends JFrame {
 	 * Create the frame.
 	 */
 	public Tela_inicial() {
+		Tela_jogo.btn_start.setLocation(341, 306);
+		
+
 		
 		conficotrole.CriarPasta();
 		 List<Dificuldade> listDificuldade = new ControleDificuldade().criaListDificuldade();      
@@ -122,7 +132,7 @@ public class Tela_inicial extends JFrame {
 			}
 			
 		});
-		btnJogadores.setBounds(50, 209, 119, 23);
+		btnJogadores.setBounds(50, 243, 141, 23);
 		contentPane.add(btnJogadores);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -142,14 +152,16 @@ public class Tela_inicial extends JFrame {
 		lbljogador.setBounds(291, 11, 172, 51);
 		contentPane.add(lbljogador);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Historico");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println(jg);
+				tela_historico.setVisible(true);
+				//dispose();
 				// txt_jogador.setText(Integer.toString(jg.getCod_jogador()));
 			}
 		});
-		btnNewButton.setBounds(102, 255, 89, 23);
+		btnNewButton.setBounds(50, 277, 141, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Continuar");
@@ -198,6 +210,20 @@ public class Tela_inicial extends JFrame {
 		lbldificu.setFont(new Font("Verdana", Font.PLAIN, 15));
 		lbldificu.setBounds(300, 58, 114, 23);
 		contentPane.add(lbldificu);
+		
+		JLabel lblNewLabel = new JLabel("Valores Pontua\u00E7\u00E3o");
+		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 13));
+		lblNewLabel.setBounds(280, 145, 141, 23);
+		contentPane.add(lblNewLabel);
+		
+		JButton btnpontuacao = new JButton("");
+		btnpontuacao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				tela_pontos.setVisible(true);
+			}
+		});
+		btnpontuacao.setBounds(419, 145, 27, 23);
+		contentPane.add(btnpontuacao);
 
 		
 		comboBox.addItem("Facil");
@@ -207,11 +233,6 @@ public class Tela_inicial extends JFrame {
 		System.out.println(String.valueOf(comboBox.getSelectedItem()));
 		System.out.println(jg.getNome()+"aa");
 		System.out.println(comboBox.getSelectedIndex());
-		/*for(int i = 0; i < lista.size(); i++) {
-			
-			comboBox.addItem(lista);
-			
-			}*/
 		
 		}
 }

@@ -39,7 +39,7 @@ public class HistoricoDAO {
 
 			// Captura o Texto dos JTextField.
 			out.println(historico.getCod_historico());
-			out.println(historico.getCod_jogador());
+			out.println(historico.getNome());
 			out.println(historico.getDate());
 			out.println(historico.getN_sequencia());
 			out.println(historico.getPontos());
@@ -256,9 +256,9 @@ public static ArrayList  PegarSalvo (String codigo){
 			int codigo = Integer.parseInt(br.readLine());
 			
 			h.setCod_historico(codigo);
-			int cod = Integer.parseInt(br.readLine());
+			//int cod = Integer.parseInt(br.readLine());
 			
-			h.setCod_jogador(cod);
+			h.setNome(br.readLine());
 		
 			h.setDate(br.readLine());
 			
@@ -272,7 +272,7 @@ public static ArrayList  PegarSalvo (String codigo){
 			listahistorico.add(h);
 			
 		} catch (IOException Erro) {
-			JOptionPane.showMessageDialog(null, i);
+			//JOptionPane.showMessageDialog(null, i);
 		}
 		
 	}

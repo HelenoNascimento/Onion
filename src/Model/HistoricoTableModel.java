@@ -11,7 +11,7 @@ import br.edu.facear.entity.Historico;
 public class HistoricoTableModel extends AbstractTableModel{
 
 	 private List<Historico> dados = new ArrayList<>();
-	    private String[] colunas = {"Codigo","Cod_Jogador","Data","N sequencia","cod_Dificuldade","Pontos",};
+	    private String[] colunas = {"Codigo","Jogador","Data","N sequencia","Dificuldade","Pontos",};
 
 	
 	    @Override
@@ -36,13 +36,13 @@ public class HistoricoTableModel extends AbstractTableModel{
 	            case 0:
 	                return dados.get(linha).getCod_historico();
 	            case 1:
-	                return dados.get(linha).getCod_jogador();
+	                return dados.get(linha).getNome();
 	            case 2: 
 	                return dados.get(linha).getDate();
 	            case 3: 
 	                return dados.get(linha).getN_sequencia();
 	            case 4: 
-	                return dados.get(linha).getCod_Dificuldade();
+	                return dados.get(linha).getDificuldade();
 	            case 5: 
 	                return dados.get(linha).getPontos();
 	        }
@@ -60,5 +60,10 @@ public class HistoricoTableModel extends AbstractTableModel{
 	        this.dados.remove(linha);
 	        this.fireTableRowsDeleted(linha, linha);
 	    }
+	    public void atualizarTabela(Historico h) {
+	    	//dados.add(h);
+	    	
+	    	fireTableDataChanged();
+	    	}
 
 }

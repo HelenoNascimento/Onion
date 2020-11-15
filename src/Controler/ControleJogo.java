@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import Tela_jogo.Tela_Pontos;
 import Tela_jogo.Tela_jogadores;
 import Tela_jogo.Tela_jogo;
 import br.edu.facear.dao.HistoricoDAO;
@@ -18,9 +19,12 @@ public class ControleJogo {
 	
 	Jogador jogador = new Jogador();
 	JogadorDAO jgdao = new JogadorDAO();
+	
+	
 	HistoricoDAO historicodao = new HistoricoDAO();
 	ConfiguracaoControle conficotrole = new ConfiguracaoControle();
 	ControleJogador controlejg = new ControleJogador();
+	
 	//Tela_inicial telainicial = new Tela_inicial();
 	int pontuacao;
 	int pontos;
@@ -46,6 +50,7 @@ public class ControleJogo {
 						pontuacao = 1 * 1000;
 						Tela_jogo.lbldificuldade.setText("Facil");
 						Tela_jogo.lbldificuldade.setForeground(Color.green);
+						
 						
 		
 					}else if (dificuldade =="Normal") {
@@ -83,8 +88,9 @@ public class ControleJogo {
 					Tela_jogo.vida1.setVisible(false); // controla as vidas que mostra na tela jogo
 					Tela_jogo.vida2.setVisible(false);
 					Tela_jogo.vida3.setVisible(false);
-					Salvar(jogador,historico,histo,contadorVez);
 					MaiorSequencia(novasequencia);
+					Salvar(jogador,historico,histo,contadorVez);
+					
 					Tela_jogo.btn_start.setText("Jogar Denovo");
 					Tela_jogo.reiniciar = 1;
 					//Tela_jogo.
@@ -116,7 +122,7 @@ public class ControleJogo {
 				
 				// teste para salvar historico
 				String testedata = dStr.toString();
-				historico.setCod_Dificuldade(0);
+				historico.setDificuldade(testedata);
 				
 				controlejg.SalvaJogadorTop(jogador);
 				historico.setCod_historico(conficotrole.PegarCodHistorico());
@@ -126,8 +132,8 @@ public class ControleJogo {
 				}else {
 					conficotrole.ControleCodHistorico(conficotrole.PegarCodHistorico(), 0);
 				}
-				historico.setCod_jogador(jogador.getCod_jogador());
-				historico.setDate(testedata);
+				historico.setNome(jogador.getNome());
+				historico.setDate(dificuldade);
 				historico.setN_sequencia(contadorVez-1);
 				historico.setPontos(jogador.getPontuacao());
 

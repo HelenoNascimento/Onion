@@ -17,6 +17,8 @@ import Controler.ControleHistorico;
 import Model.HistoricoTableModel;
 import br.edu.facear.entity.Historico;
 import br.edu.facear.entity.Jogador;
+import javax.swing.UIManager;
+import java.awt.Color;
 
 public class Tela_Historico extends JFrame {
 
@@ -61,21 +63,21 @@ public class Tela_Historico extends JFrame {
 		
 		 
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 593, 302);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 598, 369);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "JPanel title", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(4, 14, 514, 141);
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Historico", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(21, 14, 494, 266);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(6, 16, 502, 118);
+		scrollPane_1.setBounds(10, 40, 474, 215);
 		panel.add(scrollPane_1);
 		
 		table = new JTable();
@@ -99,14 +101,17 @@ public class Tela_Historico extends JFrame {
 			 table.setModel(tableModel);
 		// jScrollPane1.setViewportView(table);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton Listar = new JButton("Listar");
+		Listar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				listahistorico = controleh.Listar();
+				
 				
 				for(int a = 0; a<=listahistorico.size();a++) {
 					tableModel.addRow(listahistorico.get(a));
 				}
+				listahistorico.clear();
 			/*	Historico h = new Historico();
 				h.setCod_Dificuldade(1);
 				h.setCod_historico(1);
@@ -118,11 +123,23 @@ public class Tela_Historico extends JFrame {
 				//tableModel.addRow(h);
 			}
 		});
-		btnNewButton.setBounds(30, 202, 89, 23);
-		contentPane.add(btnNewButton);
+		Listar.setBounds(46, 291, 89, 23);
+		contentPane.add(Listar);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(522, 30, 2, 118);
-		contentPane.add(scrollPane);
+		JButton btnNewButton = new JButton("atualizar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//System.out.println(listahistorico.size());
+					for(int a1 = 0; a1<= listahistorico.size();a1++) {
+						tableModel.removeRow(a1);
+						System.out.println(listahistorico.size());
+					}
+					//tableModel.atualizarTabela(listahistorico.get(a));
+				}
+				
+		});
+		btnNewButton.setBounds(148, 291, 89, 23);
+		contentPane.add(btnNewButton);
 	}
 }
