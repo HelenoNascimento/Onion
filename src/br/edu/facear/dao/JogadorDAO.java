@@ -23,6 +23,7 @@ public class JogadorDAO {
 	Jogador top1 =new Jogador();
 	Jogador top2 =new Jogador();
 	Jogador top3 =new Jogador();
+	Jogador reserva = new Jogador();
 	
 	
 	ArrayList  <Jogador> listadejogador= new ArrayList();
@@ -31,7 +32,7 @@ public class JogadorDAO {
 			try {
 				// Inst�ncia de um Objeto da Class Java(PrintWriter
 				// "para Grava��o do Arquivo").
-				PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Jogadores\\" +jg.getCod_jogador() + ".txt");// Define
+				PrintWriter out = new PrintWriter("C:\\Onion\\Jogadores\\" +jg.getCod_jogador() + ".txt");// Define
 																												// o
 																												// local
 																												// e
@@ -63,13 +64,38 @@ public class JogadorDAO {
 			
 			
 		}
+		public void editar(Jogador jg) {
+			try {
+				// Inst�ncia de um Objeto da Class Java(PrintWriter
+				// "para Grava��o do Arquivo").
+				PrintWriter out = new PrintWriter("C:\\Onion\\Jogadores\\" +jg.getNome()+ ".txt");// Define
+				
+				out.println(jg.getCod_jogador());
+				out.println(jg.getNome());
+				out.println(jg.getEmail());
+				out.println(jg.getIdade());
+				out.println(jg.getPontuacao());
+				out.println(jg.getSenha());
+
+				// Fecha Conex�o.
+				out.close();
+
+				
+		//		JOptionPane.showMessageDialog(null, "Arquivo gerado e conte�do gravado com sucesso!");
+
+			} catch (IOException Erro) {
+				JOptionPane.showMessageDialog(null, "Erro ao Gravar no Arquivo" + Erro);
+			}
+			
+			
+		}
 		
 		public Jogador Logar(String nome, String senha) {
 
 					try {
 				
 						BufferedReader br = new BufferedReader(
-								new FileReader("C:\\Users\\helen\\Documents\\Onion\\Jogadores\\"+nome+".txt")); 
+								new FileReader("C:\\Onion\\Jogadores\\"+nome+".txt")); 
 			
 							
 						int codigo = Integer.parseInt(br.readLine());
@@ -107,7 +133,7 @@ public class JogadorDAO {
 					// Class java(FileReader) referenciando o arquivo a ser
 					// aberto.
 					BufferedReader br = new BufferedReader(
-							new FileReader("C:\\Users\\helen\\Documents\\Onion\\Jogadores\\"+i+".txt")); // instancia o objeto da classe File com o caminho do arquivo a ser lido
+							new FileReader("C:\\Onion\\Jogadores\\"+i+".txt")); // instancia o objeto da classe File com o caminho do arquivo a ser lido
 			
 							// Ler o conte�do do arquivo e exibe nos JTextField.
 					int codigo = Integer.parseInt(br.readLine());
@@ -146,7 +172,7 @@ public class JogadorDAO {
 				// Class java(FileReader) referenciando o arquivo a ser
 				// aberto.
 				BufferedReader br = new BufferedReader(
-						new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\Jogadores\\\\" + arquivo + ".txt"));
+						new FileReader("C:\\\\Onion\\\\Jogadores\\\\" + arquivo + ".txt"));
 
 				// Ler o conte�do do arquivo e exibe nos JTextField.
 				numjogador = br.readLine();
@@ -155,7 +181,7 @@ public class JogadorDAO {
 				//tfEmail.setText(br.readLine());
 
 			} catch (IOException Erro) {
-				JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+				//JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
 			}
 			
 			return numjogador;
@@ -174,7 +200,7 @@ public class JogadorDAO {
 				// Class java(FileReader) referenciando o arquivo a ser
 				// aberto.
 				BufferedReader br = new BufferedReader(
-						new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\Jogadores\\\\" + joga + ".txt"));
+						new FileReader("C:\\\\Onion\\\\Jogadores\\\\" + joga + ".txt"));
 				int codigo = Integer.parseInt(br.readLine());
 				jg.setCod_jogador(codigo);
 				jg.setNome(br.readLine());
@@ -187,7 +213,7 @@ public class JogadorDAO {
 				
 
 			} catch (IOException Erro) {
-				JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+			//	JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
 			}
 			
 			return jg;
@@ -198,7 +224,7 @@ public class JogadorDAO {
 			try {
 				// Inst�ncia de um Objeto da Class Java(PrintWriter
 				// "para Grava��o do Arquivo").
-				PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Jogadores\\" +jg.getNome() + ".txt");// Define
+				PrintWriter out = new PrintWriter("C:\\Onion\\Jogadores\\" +jg.getNome() + ".txt");// Define
 				
 				out.println(jg.getCod_jogador());
 				out.println(jg.getNome());
@@ -226,7 +252,7 @@ public class JogadorDAO {
 			try {
 				// Inst�ncia de um Objeto da Class Java(PrintWriter
 				// "para Grava��o do Arquivo").
-				PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Top3\\1.txt");// Define
+				PrintWriter out = new PrintWriter("C:\\Onion\\Top3\\1.txt");// Define
 				
 				out.println(jg.getCod_jogador());
 				out.println(jg.getNome());
@@ -253,7 +279,7 @@ public class JogadorDAO {
 			try {
 				// Inst�ncia de um Objeto da Class Java(PrintWriter
 				// "para Grava��o do Arquivo").
-				PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Top3\\2.txt");// Define
+				PrintWriter out = new PrintWriter("C:\\Onion\\Top3\\2.txt");// Define
 				
 				out.println(jg.getCod_jogador());
 				out.println(jg.getNome());
@@ -279,7 +305,7 @@ public class JogadorDAO {
 			try {
 				// Inst�ncia de um Objeto da Class Java(PrintWriter
 				// "para Grava��o do Arquivo").
-				PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Top3\\3.txt");// Define
+				PrintWriter out = new PrintWriter("C:\\Onion\\Top3\\3.txt");// Define
 				
 				out.println(jg.getCod_jogador());
 				out.println(jg.getNome());
@@ -308,7 +334,7 @@ public class JogadorDAO {
 			try {
 	
 				BufferedReader br = new BufferedReader(
-						new FileReader("C:\\Users\\helen\\Documents\\Onion\\Top3\\1.txt"));
+						new FileReader("C:\\Onion\\Top3\\1.txt"));
 				int codigo = Integer.parseInt(br.readLine());
 				top1.setCod_jogador(codigo);
 				top1.setNome(br.readLine());
@@ -324,7 +350,7 @@ public class JogadorDAO {
 				top1.setSenha(senha);
 
 			} catch (IOException Erro) {
-				JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+				//JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
 			}
 			
 			return top1;
@@ -336,7 +362,7 @@ public class JogadorDAO {
 			try {
 	
 				BufferedReader br = new BufferedReader(
-						new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\Top3\\\\2.txt"));
+						new FileReader("C:\\\\Onion\\\\Top3\\\\2.txt"));
 				int codigo = Integer.parseInt(br.readLine());
 				top2.setCod_jogador(codigo);
 				top2.setNome(br.readLine());
@@ -352,7 +378,7 @@ public class JogadorDAO {
 				top2.setSenha(senha);
 
 			} catch (IOException Erro) {
-				JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+			//	JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
 			}
 			
 			return top2;
@@ -365,7 +391,7 @@ public class JogadorDAO {
 			try {
 	
 				BufferedReader br = new BufferedReader(
-						new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\Top3\\\\3.txt"));
+						new FileReader("C:\\\\Onion\\\\Top3\\\\3.txt"));
 				int codigo = Integer.parseInt(br.readLine());
 				top3.setCod_jogador(codigo);
 				top3.setNome(br.readLine());
@@ -381,7 +407,7 @@ public class JogadorDAO {
 				top3.setSenha(senha);
 
 			} catch (IOException Erro) {
-				JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
+			//	JOptionPane.showMessageDialog(null, "Digite um c�digo v�lido!");
 			}
 			
 			return top3;

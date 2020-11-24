@@ -17,7 +17,7 @@ public class ConfiguracaoDAO {
 		try {
 			// Inst�ncia de um Objeto da Class Java(PrintWriter
 			// "para Grava��o do Arquivo").
-			PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\configuracao.txt");// Define
+			PrintWriter out = new PrintWriter("C:\\Onion\\configuracao.txt");// Define
 											
 			out.println(cod_historico);
 			out.println(cod_jogador);
@@ -48,7 +48,7 @@ public class ConfiguracaoDAO {
 
 
 			BufferedReader br = new BufferedReader(
-					new FileReader("C:\\Users\\helen\\Documents\\Onion\\configuracao.txt"));
+					new FileReader("C:\\Onion\\configuracao.txt"));
 
 			// Ler o conte�do do arquivo e exibe nos JTextField.
 			cod_historico = Integer.parseInt(br.readLine());
@@ -70,7 +70,7 @@ public class ConfiguracaoDAO {
 
 
 			BufferedReader br = new BufferedReader(
-					new FileReader("C:\\Users\\helen\\Documents\\Onion\\configuracao.txt"));
+					new FileReader("C:\\Onion\\configuracao.txt"));
 
 			// Ler o conte�do do arquivo e exibe nos JTextField.
 			br.readLine();
@@ -86,6 +86,17 @@ public class ConfiguracaoDAO {
 	}
 	// metedo que cria as pastas caso elas nao existam 
 		public void CriarPastas() {
+			File diretorio = new File("C:/Onion/Historico");
+			File diretorio2 = new File("C:/Onion/HistoricoSequencia");
+			File diretorio3 = new File("C:/Onion/Jogadores");
+			File diretorio4 = new File("C:/Onion/Top3");
+		    diretorio.mkdirs();
+		    diretorio2.mkdirs();
+		    diretorio3.mkdirs();
+		    diretorio4.mkdirs();
+		}
+/* // metedo que cria as pastas caso elas nao existam 
+		public void CriarPastas() {
 			File diretorio = new File("C:\\Users\\helen\\Documents/Onion/Historico");
 			File diretorio2 = new File("C:\\Users\\helen\\Documents\\Onion/HistoricoSequencia");
 			File diretorio3 = new File("C:\\Users\\helen\\Documents\\Onion/Jogadores");
@@ -94,12 +105,11 @@ public class ConfiguracaoDAO {
 		    diretorio2.mkdirs();
 		    diretorio3.mkdirs();
 		    diretorio4.mkdirs();
-		}
-
+		}*/
 		
 		public void criarconf( ) {
 			try {
-				PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\configuracao.txt");// Define
+				PrintWriter out = new PrintWriter("C:\\Onion\\configuracao.txt");// Define
 
 				// Fecha Conex�o.
 				out.close();

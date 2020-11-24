@@ -1,5 +1,7 @@
 package Controler;
 
+import java.net.URL;
+
 import javax.swing.JOptionPane;
 
 import Tela_jogo.Tela_cadastro;
@@ -9,6 +11,7 @@ import br.edu.facear.entity.Jogador;
 public class ControleJogador {
 	Jogador jogador = new Jogador();
 	JogadorDAO jgdao = new JogadorDAO();
+	Jogador reserva = new Jogador();
 	
 	//Jogador top2 = new Jogador();	
 	//Jogador top3 = new Jogador();
@@ -46,6 +49,7 @@ public class ControleJogador {
 		JOptionPane.showMessageDialog(null, "Jogador Cadastrado com sucesso");
 		}
 	}
+	
 		
 	public Jogador Logar(String usuario,String senha) {
 		
@@ -109,13 +113,19 @@ public class ControleJogador {
 		 System.out.println("top1: "+top3);
 		 
 		if(jg.getPontuacao() >= top1.getPontuacao()) {
+			reserva = top1;
 			jgdao.CadastrarJogadorTop1(jg);
+			jg = reserva;
 			System.out.println("top1 ");
-		}else if(jg.getPontuacao() >= top2.getPontuacao()) {
+		}if(jg.getPontuacao() >= top2.getPontuacao()) {
+			reserva = top2;
 			jgdao.CadastrarJogadorTop2(jg);
+			jg = reserva;
 			System.out.println("top2 ");
-		}else if(jg.getPontuacao() >= top3.getPontuacao()) {
+		} if(jg.getPontuacao() >= top3.getPontuacao()) {
+			reserva = top3;
 			jgdao.CadastrarJogadorTop3(jg);
+			jg = reserva;
 			System.out.println("top3 ");
 		}
 		
@@ -129,5 +139,9 @@ public class ControleJogador {
 		
 	}
 	
+	public void  tocarErrou(){
+		URL url = getClass().getResource("/Imagens/errou.mp3");
+		
+	}
 
 }

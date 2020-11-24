@@ -25,7 +25,7 @@ public class HistoricoDAO {
 		try {
 			// Inst�ncia de um Objeto da Class Java(PrintWriter
 			// "para Grava��o do Arquivo").
-			PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\Historico\\" +historico.getCod_historico()+".txt");// Define
+			PrintWriter out = new PrintWriter("C:\\Onion\\Historico\\" +historico.getCod_historico()+".txt");// Define
 																											// o
 																											// local
 																											// e
@@ -42,6 +42,7 @@ public class HistoricoDAO {
 			out.println(historico.getNome());
 			out.println(historico.getDate());
 			out.println(historico.getN_sequencia());
+			out.println(historico.getDificuldade());
 			out.println(historico.getPontos());
 
 			// Fecha Conex�o.
@@ -63,7 +64,7 @@ public class HistoricoDAO {
 			
 			// Inst�ncia de um Objeto da Class Java(PrintWriter
 			// "para Grava��o do Arquivo").
-			PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\\\HistoricoSequencia\\" +cod+".txt");// Define
+			PrintWriter out = new PrintWriter("C:\\Onion\\\\HistoricoSequencia\\" +cod+".txt");// Define
 
 			for (int i = 0; i < texto.size(); i++){
 				out.print((int) texto.get(i));
@@ -88,7 +89,7 @@ public class HistoricoDAO {
 		try {
 			
 			BufferedReader br = new BufferedReader(
-					new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\\\HistoricoSequencia\\\\"+codigo+".txt")); // instancia o objeto da classe File com o caminho do arquivo a ser lido
+					new FileReader("C:\\\\Onion\\\\\\HistoricoSequencia\\\\"+codigo+".txt")); // instancia o objeto da classe File com o caminho do arquivo a ser lido
 			String line = br.readLine();
 			 
 			//System.out.println("aa"+line);
@@ -124,7 +125,7 @@ public class HistoricoDAO {
 		try {
 	
 			
-			FileReader arq = new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\Historico\\\\0.txt"); // instancia o objeto da classe File com o caminho do arquivo a ser lido
+			FileReader arq = new FileReader("C:\\\\Onion\\\\Historico\\\\0.txt"); // instancia o objeto da classe File com o caminho do arquivo a ser lido
 			 BufferedReader lerArq = new BufferedReader(arq);
 			 String linha = lerArq.readLine(); 
 			System.out.println("aa"+linha);
@@ -161,7 +162,7 @@ public static void MaiorSequencia(ArrayList texto){
 			
 			// Inst�ncia de um Objeto da Class Java(PrintWriter
 			// "para Grava��o do Arquivo").
-			PrintWriter out = new PrintWriter("C:\\Users\\helen\\Documents\\Onion\\\\HistoricoSequencia\\MaiorSequencia.txt");// Define
+			PrintWriter out = new PrintWriter("C:\\\\Onion\\HistoricoSequencia\\MaiorSequencia.txt");// Define
 
 			for (int i = 0; i < texto.size(); i++){
 				out.print((int) texto.get(i));
@@ -186,7 +187,7 @@ public static ArrayList  PegaMaiorSequencia (){
 	try {
 
 		
-		FileReader arq = new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\\\HistoricoSequencia\\\\MaiorSequencia.txt"); // instancia o objeto da classe File com o caminho do arquivo a ser lido
+		FileReader arq = new FileReader("C:\\\\Onion\\\\\\HistoricoSequencia\\\\MaiorSequencia.txt"); // instancia o objeto da classe File com o caminho do arquivo a ser lido
 		 BufferedReader lerArq = new BufferedReader(arq);
 		 String linha = lerArq.readLine(); 
 		System.out.println("aa"+linha);
@@ -215,7 +216,7 @@ public static ArrayList  PegarSalvo (String codigo){
 	try {
 
 		//"C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\\\HistoricoSequencia\\"+codigo+".txt"
-		FileReader arq = new FileReader("C:\\\\Users\\\\helen\\\\Documents\\\\Onion\\\\\\HistoricoSequencia\\"+codigo+".txt"); // instancia o objeto da classe File com o caminho do arquivo a ser lido
+		FileReader arq = new FileReader("C:\\\\Onion\\\\\\HistoricoSequencia\\"+codigo+".txt"); // instancia o objeto da classe File com o caminho do arquivo a ser lido
 		 BufferedReader lerArq = new BufferedReader(arq);
 		 String linha = lerArq.readLine(); 
 
@@ -244,13 +245,13 @@ public static ArrayList  PegarSalvo (String codigo){
 
 		public ArrayList ListarHistorico() {
 			ArrayList  <Historico> listahistorico= new ArrayList();
-	for(int i =0 ;i<10; i++) {
+	for(int i =0 ;i<50; i++) {
 		Historico h = new Historico();
 		System.out.println(i);
 		try {
 
 			BufferedReader br = new BufferedReader(
-					new FileReader("C:\\Users\\helen\\Documents\\Onion\\Historico\\"+i+".txt")); // instancia o objeto da classe File com o caminho do arquivo a ser lido
+					new FileReader("C:\\Onion\\Historico\\"+i+".txt")); // instancia o objeto da classe File com o caminho do arquivo a ser lido
 	
 					// Ler o conte�do do arquivo e exibe nos JTextField.
 			int codigo = Integer.parseInt(br.readLine());
@@ -264,6 +265,8 @@ public static ArrayList  PegarSalvo (String codigo){
 			
 			int quantidade = Integer.parseInt(br.readLine());
 			h.setN_sequencia(quantidade);
+			
+			h.setDificuldade(br.readLine());
 		
 			int pontuacao = Integer.parseInt(br.readLine());
 			

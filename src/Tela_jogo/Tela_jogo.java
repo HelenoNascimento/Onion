@@ -26,6 +26,7 @@ import br.edu.facear.entity.Historico;
 import br.edu.facear.entity.Jogador;
 import java.awt.Component;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 
 public class Tela_jogo extends JFrame {
 
@@ -66,6 +67,9 @@ public class Tela_jogo extends JFrame {
 	HistoricoDAO historicodao = new HistoricoDAO();
 	Pontuacao pts = new Pontuacao();
 	
+	//essa variavel é usada para usar o metodo sair
+	public static int sair = 0;
+	
 	public int Continuar = 0;
 	int contadorVez = 0;
 	int numero;
@@ -81,8 +85,18 @@ public class Tela_jogo extends JFrame {
 	public static String dificuldade;
 	public static int reiniciar =0;
 	private final JButton btnSalvar = new JButton("Salvar");
+	;
 	
+	String arquivo1 = "/Arquivos/errou2.png";
+	String arquivo2 = "/Arquivos/olokomeu.png" ;
 	
+	 ImageIcon imagem = new ImageIcon(getClass().getResource("/Arquivos/errou2.png"));
+	ImageIcon imagem1 = new ImageIcon(getClass().getResource("/Arquivos/trofeu.png"));
+	
+	 
+	public JLabel lblerrou = new JLabel(imagem);
+	public JLabel lbltrofeu = new JLabel(imagem1);
+	 
 	/**
 	 * Launch the application.
 	 */
@@ -106,14 +120,26 @@ public class Tela_jogo extends JFrame {
 	 * Create the frame.
 	 */
 	public Tela_jogo() {
-
+		//if(Continuar == 1) {
+			//MaquinaLista.clear();
+	//	//	MaquinaLista = ListaSalvo;
+	//		num =1;
+	//		Continuar = 0;
+	//	}
+		
+		if(contadorVez >= 5) {
+			
+		}
+		
+		lblerrou.setVisible(false);
 		array_aux[0] = "1";
 		//jogador.setEmail("Teste@gemail.com");
 		//jogador.setIdade("15");
 		//jogador.setNome("Tiago");
 		//jogador.setCod_jogador(10);
-		setBounds(100, 100, 838, 419);
+		setBounds(100, 100, 948, 429);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -121,6 +147,7 @@ public class Tela_jogo extends JFrame {
 			public void actionPerformed(ActionEvent e) {		
 				controlaVezJogador++;
 				contadorVez++;
+				toca();
 				//array_aux[contadorVez] = "0";
 				System.out.println("controle" +controlaVezJogador);
 				lista.add(0);
@@ -136,7 +163,8 @@ public class Tela_jogo extends JFrame {
 					
 						
 					}else {
-						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
+						lblerrou.setVisible(true);
+					//	JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
 						int pont = array_aux.length;
 						jogador.setPontuacao(pts.SomaPonto(dificuldade, contadorVez-1));
 						controle.Vida(1,jogador,historico,MaquinaLista,contadorVez,MaquinaLista); // CASO O JOGADOR ERRAR ELE PERDE UMA VIDA
@@ -146,6 +174,9 @@ public class Tela_jogo extends JFrame {
 						
 						//SalvaHistorico();
 						contadorVez =0;
+					//	if(sair ==1) {
+						//	sair();
+						//}
 						
 					}
 					
@@ -160,12 +191,13 @@ public class Tela_jogo extends JFrame {
 		
 
 		btn1.setBackground(new Color(50, 205, 50));
-		btn1.setBounds(76, 70, 114, 77);
+		btn1.setBounds(45, 70, 114, 77);
 		contentPane.add(btn1);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlaVezJogador++;
 				contadorVez++;
+				toca();
 				//array_aux[contadorVez] = "0";
 				System.out.println("controle" +controlaVezJogador);
 				lista.add(1);
@@ -179,7 +211,8 @@ public class Tela_jogo extends JFrame {
 						ControlaVez();
 						
 					}else {
-						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
+						lblerrou.setVisible(true);
+						//JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
 						int pont = array_aux.length;
 						System.out.println("pontuação :"+pts.SomaPonto(dificuldade, pont));
 						jogador.setPontuacao(pts.SomaPonto(dificuldade, contadorVez-1));
@@ -188,6 +221,9 @@ public class Tela_jogo extends JFrame {
 						//jogadordao.Salvar(jogador);
 					//	SalvaHistorico();
 						contadorVez =0;
+						//if(sair ==1) {
+						//	sair();
+						//}
 					}
 					
 				}
@@ -198,12 +234,13 @@ public class Tela_jogo extends JFrame {
 		
 		
 		btn2.setBackground(new Color(255, 0, 0));
-		btn2.setBounds(213, 70, 114, 77);
+		btn2.setBounds(182, 70, 114, 77);
 		contentPane.add(btn2);
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlaVezJogador++;
 				contadorVez++;
+				toca();
 				//array_aux[contadorVez] = "0";
 				System.out.println("controle" +controlaVezJogador);
 				lista.add(2);
@@ -218,7 +255,7 @@ public class Tela_jogo extends JFrame {
 						ControlaVez();
 						
 					}else {
-						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
+						lblerrou.setVisible(true);
 						int pont = array_aux.length;
 						System.out.println("pontuação :"+pts.SomaPonto(dificuldade, pont));
 						jogador.setPontuacao(pts.SomaPonto(dificuldade, contadorVez-1));
@@ -228,6 +265,10 @@ public class Tela_jogo extends JFrame {
 						//jogadordao.Salvar(jogador);
 					//	SalvaHistorico();
 						contadorVez =0;
+					//	JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
+					//	if(sair ==1) {
+						//	sair();
+						//}
 					}
 					
 				}
@@ -237,12 +278,13 @@ public class Tela_jogo extends JFrame {
 		
 		
 		btn3.setBackground(new Color(0, 0, 255));
-		btn3.setBounds(76, 158, 114, 77);
+		btn3.setBounds(45, 158, 114, 77);
 		contentPane.add(btn3);
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlaVezJogador++;
 				contadorVez++;
+				toca();
 				//array_aux[contadorVez] = "0";
 				System.out.println("controle" +controlaVezJogador);
 				lista.add(3);
@@ -257,7 +299,7 @@ public class Tela_jogo extends JFrame {
 						ControlaVez();
 					
 					}else {
-						JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
+						lblerrou.setVisible(true);
 						int pont = array_aux.length;
 						System.out.println("pontuação :"+pts.SomaPonto(dificuldade, pont));
 						jogador.setPontuacao(pts.SomaPonto(dificuldade, contadorVez-1));
@@ -266,6 +308,10 @@ public class Tela_jogo extends JFrame {
 					//	jogadordao.Salvar(jogador);
 					//	SalvaHistorico();
 						contadorVez =0;
+						//JOptionPane.showMessageDialog(null, "Errou", "Errou", JOptionPane.PLAIN_MESSAGE);
+						//if(sair ==1) {
+							//sair();
+					//	}
 					}
 					
 				}
@@ -275,17 +321,19 @@ public class Tela_jogo extends JFrame {
 		
 		
 		btn4.setBackground(new Color(255, 255, 0));
-		btn4.setBounds(216, 158, 111, 77);
+		btn4.setBounds(185, 158, 111, 77);
 		contentPane.add(btn4);
 		
 	
 		btn_start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				lblerrou.setVisible(false);
 				if(Continuar == 1) {
+				//	MaquinaLista.clear();
 					MaquinaLista = ListaSalvo;
 					num =1;
 					Continuar = 0;
+					reiniciar =0;
 				}
 				
 				if(reiniciar == 1) {
@@ -315,67 +363,24 @@ public class Tela_jogo extends JFrame {
 		btn_start.setBounds(22, 306, 140, 35);
 		contentPane.add(btn_start);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//String a = CodigoJogador.toString();
-				jogador = jogadordao.BuscaJogador(Integer.toString(CodigoJogador));
-				System.out.println(jogador.getCod_jogador());
-				System.out.println(jogador.getNome());
-				System.out.println(jogador.getIdade());
-				System.out.println(jogador.getEmail());
-				int t = MaquinaLista.size();
-				t = t-1;
-				//MaquinaLista.remove(t);
-				controle.Salvar(jogador, historico, MaquinaLista,contadorVez);
-				
-				////MaquinaLista = null;
-			/*	vezJogar =1; 
-				MaquinaLista = historicodao.LerUtilmaJogada();
-			//	historicodao.teste();
-				ControlaVez();
-				lblSuaVez.setVisible(false);
-				
-				System.out.println("");
-				System.out.print("Maquina lista");
-				for (int i = 0; i < MaquinaLista.size(); i++) {	
-           		 System.out.print(MaquinaLista.get(i));
-           	 }
-				System.out.println("");
-				System.out.print("jogador lista");
-				for (int i = 0; i < lista.size(); i++) {	
-           		 System.out.print(lista.get(i));
-           	 }*/
-				
-				
-				
-			}
-		});
-		btnNewButton_1.setBounds(238, 267, 89, 23);
-		contentPane.add(btnNewButton_1);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(389, 58, 81, 66);
-		contentPane.add(lblNewLabel);
-		
 		
 		lblSuaVez.setFont(new Font("Verdana", Font.PLAIN, 16));
 		lblSuaVez.setBounds(22, 271, 140, 24);
 		contentPane.add(lblSuaVez);
 		lblJogador.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblJogador.setBounds(80, 16, 82, 31);
+		lblJogador.setBounds(45, 12, 82, 31);
 		
 		contentPane.add(lblJogador);
 		lblqualjogador.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblqualjogador.setBounds(157, 15, 111, 33);
+		lblqualjogador.setBounds(122, 11, 111, 33);
 		
 		contentPane.add(lblqualjogador);
 		lblqualdificuldade.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblqualdificuldade.setBounds(251, 15, 90, 33);
+		lblqualdificuldade.setBounds(216, 11, 90, 33);
 		
 		contentPane.add(lblqualdificuldade);
 		lbldificuldade.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lbldificuldade.setBounds(342, 16, 101, 31);
+		lbldificuldade.setBounds(307, 12, 101, 31);
 		
 		contentPane.add(lbldificuldade);
 		
@@ -408,7 +413,7 @@ public class Tela_jogo extends JFrame {
 				ControlaVez();
 			}
 		});
-		btnRepetir.setBounds(357, 112, 140, 35);
+		btnRepetir.setBounds(359, 342, 140, 35);
 		contentPane.add(btnRepetir);
 		
 		JButton btnNewButton_2_1 = new JButton("Maior Sequencia");
@@ -422,8 +427,9 @@ public class Tela_jogo extends JFrame {
 			}
 		});
 		btnNewButton_2_1.setBackground(Color.WHITE);
-		btnNewButton_2_1.setBounds(357, 200, 140, 35);
+		btnNewButton_2_1.setBounds(519, 342, 140, 35);
 		contentPane.add(btnNewButton_2_1);
+		btnSalvar.setBackground(Color.WHITE);
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int t = MaquinaLista.size();
@@ -440,76 +446,91 @@ public class Tela_jogo extends JFrame {
 				
 			}
 		});
-		btnSalvar.setBounds(381, 294, 89, 23);
+		btnSalvar.setBounds(360, 312, 89, 23);
 		
 		contentPane.add(btnSalvar);
 		
 		JLabel lbltop3 = new JLabel("TOP 3 JOGADORES");
 		lbltop3.setForeground(Color.GREEN);
 		lbltop3.setFont(new Font("Verdana", Font.PLAIN, 25));
-		lbltop3.setBounds(560, 28, 252, 52);
+		lbltop3.setBounds(619, 28, 252, 52);
 		contentPane.add(lbltop3);
 		
 		JLabel lbltop1 = new JLabel("1\u00BA");
 		lbltop1.setForeground(Color.BLUE);
 		lbltop1.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lbltop1.setBounds(570, 122, 46, 14);
+		lbltop1.setBounds(626, 132, 46, 14);
 		contentPane.add(lbltop1);
 		
 		JLabel lbltop1_1 = new JLabel("2\u00BA");
 		lbltop1_1.setForeground(Color.BLUE);
 		lbltop1_1.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lbltop1_1.setBounds(570, 158, 46, 14);
+		lbltop1_1.setBounds(626, 168, 46, 14);
 		contentPane.add(lbltop1_1);
 		
 		JLabel lbltop1_2 = new JLabel("3\u00BA");
 		lbltop1_2.setForeground(Color.BLUE);
 		lbltop1_2.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lbltop1_2.setBounds(570, 200, 46, 14);
+		lbltop1_2.setBounds(626, 210, 46, 14);
 		contentPane.add(lbltop1_2);
 		
 
 		
 		jg1.setFont(new Font("Verdana", Font.PLAIN, 15));
-		jg1.setBounds(606, 123, 89, 14);
+		jg1.setBounds(662, 133, 89, 14);
 		contentPane.add(jg1);
 		
 		
 		jg2.setFont(new Font("Verdana", Font.PLAIN, 15));
-		jg2.setBounds(606, 160, 89, 14);
+		jg2.setBounds(662, 170, 89, 14);
 		contentPane.add(jg2);
 		
 		
 		jg3.setFont(new Font("Verdana", Font.PLAIN, 15));
-		jg3.setBounds(606, 200, 89, 14);
+		jg3.setBounds(662, 210, 89, 14);
 		contentPane.add(jg3);
 		
 		JLabel lbnomes = new JLabel("Nome:");
-		lbnomes.setBounds(617, 84, 46, 14);
+		lbnomes.setBounds(672, 107, 46, 14);
 		contentPane.add(lbnomes);
 		
 		JLabel lblPontos = new JLabel("Pontos:");
-		lblPontos.setBounds(702, 84, 46, 14);
+		lblPontos.setBounds(766, 107, 46, 14);
 		contentPane.add(lblPontos);
 		
 		
 		ptn1.setFont(new Font("Verdana", Font.PLAIN, 15));
-		ptn1.setBounds(705, 122, 73, 14);
+		ptn1.setBounds(761, 132, 73, 14);
 		contentPane.add(ptn1);
 		
 		
 		pnt2.setFont(new Font("Verdana", Font.PLAIN, 15));
-		pnt2.setBounds(705, 158, 73, 14);
+		pnt2.setBounds(761, 168, 73, 14);
 		contentPane.add(pnt2);
 		
 		
 		pnt3.setFont(new Font("Verdana", Font.PLAIN, 15));
-		pnt3.setBounds(702, 200, 73, 14);
+		pnt3.setBounds(761, 210, 73, 14);
 		contentPane.add(pnt3);
+		lblerrou.setBounds(306, 50, 303, 214);
 		
-		Component horizontalStrut = Box.createHorizontalStrut(20);
-		horizontalStrut.setBounds(549, 267, 184, 77);
-		contentPane.add(horizontalStrut);
+		contentPane.add(lblerrou);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				sair();
+				dispose();
+			}
+		});
+		btnVoltar.setBackground(Color.RED);
+		btnVoltar.setFont(new Font("Verdana", Font.BOLD, 15));
+		btnVoltar.setBounds(833, 335, 89, 44);
+		contentPane.add(btnVoltar);
+		lbltrofeu.setBounds(833, 120, 89, 133);
+		
+		contentPane.add(lbltrofeu);
 		
 	}
 	public void SalvaHistorico() {
@@ -650,5 +671,35 @@ public void Pisca_Botoes(JButton e) {
 				
 			}
 			
+		}
+		
+		public void toca() {
+			if (contadorVez ==5) {
+				controle.tocarmeu();
+			}else if (contadorVez ==10) {
+				controle.tocarmeu();
+			}
+		}
+		
+		
+		
+		public void sair() {
+			vida1.setVisible(true);
+			vida2.setVisible(true);
+			vida3.setVisible(true);
+			totalVida = 3;
+			//Continuar = 0;
+			 contadorVez = 0;
+			// reiniciar =0;
+			 vezJogar = 0;
+			 controlaVezJogador = 0;
+			 controlaVezJogador = 0;
+				//contadorVez = 0;
+				MaquinaLista.clear();
+				lista.clear();
+				ListaSalvo.clear();
+				sair = 0;
+				//dispose();
+				
 		}
 }

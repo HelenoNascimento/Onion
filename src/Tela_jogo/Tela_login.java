@@ -81,6 +81,7 @@ public class Tela_login extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 606, 381);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -161,7 +162,7 @@ public class Tela_login extends JFrame {
 		
 		lbl_onion.setBounds(78, 11, 193, 75);
 		lbl_onion.setForeground(Color.GREEN);
-		lbl_onion.setFont(new Font("Verdana", Font.PLAIN, 28));
+		lbl_onion.setFont(new Font("Verdana", Font.PLAIN, 35));
 		contentPane.add(lbl_onion);
 		
 		JLabel lblNewLabel = new JLabel("Usuario");

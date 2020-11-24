@@ -1,6 +1,8 @@
 package Tela_jogo;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -10,19 +12,16 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Controler.ConfiguracaoControle;
 import Controler.ControleDificuldade;
 import Controler.ControleJogo;
+import Controler.Tela_InicialControle;
 import br.edu.facear.dao.HistoricoDAO;
 import br.edu.facear.dao.JogadorDAO;
 import br.edu.facear.entity.Dificuldade;
 import br.edu.facear.entity.Jogador;
-import java.awt.Font;
-import java.awt.Color;
-import javax.swing.UIManager;
 
 public class Tela_inicial extends JFrame {
 	/**
@@ -34,6 +33,7 @@ public class Tela_inicial extends JFrame {
 	private Tela_jogadores Tela_jogadores = new Tela_jogadores();
 	private Tela_Historico tela_historico = new Tela_Historico();
 	private Tela_Pontos tela_pontos = new Tela_Pontos();
+	Tela_Perfil tela_perfil = new Tela_Perfil();
 	ConfiguracaoControle conficotrole = new ConfiguracaoControle();
 	private Tela_jogo  Tela_jogo = new Tela_jogo();
 	
@@ -44,6 +44,7 @@ public class Tela_inicial extends JFrame {
 	 ControleDificuldade cd = new ControleDificuldade();
 	 ControleJogo cj = new ControleJogo();
 	 Dificuldade df = new Dificuldade();
+	 Tela_InicialControle iniciocontrole = new Tela_InicialControle();
 	 JogadorDAO jgdao = new JogadorDAO();
 	 Jogador jg  = new Jogador();
 	 public static JLabel lbldificu = new JLabel("Dificuldade");
@@ -72,7 +73,7 @@ public class Tela_inicial extends JFrame {
 	 * Create the frame.
 	 */
 	public Tela_inicial() {
-		Tela_jogo.btn_start.setLocation(341, 306);
+		Tela_jogo.btn_start.setLocation(10, 318);
 		
 
 		
@@ -107,21 +108,13 @@ public class Tela_inicial extends JFrame {
 				Tela_jogo.dificuldade = dificu;
 				//Tela_jogo.CodigoJogador = Integer.parseInt(txt_jogador.getText());
 				Tela_jogo.jogador = jg;
+				//Tela_jogo.Continuar
+				Tela_jogo.reiniciar = 1;
 				
 			}
 		});
 		btn_jogar.setBounds(50, 58, 141, 42);
 		contentPane.add(btn_jogar);
-		
-		JButton btn_cadastrar = new JButton("Cadastrar");
-		btn_cadastrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// ABRE A TELA CADASTRO
-				Tela_cadastro.setVisible(true);
-			}
-		});
-		btn_cadastrar.setBounds(295, 255, 119, 23);
-		contentPane.add(btn_cadastrar);
 		
 		JButton btnJogadores = new JButton("Jogadores");
 		btnJogadores.addActionListener(new ActionListener() {
@@ -167,11 +160,16 @@ public class Tela_inicial extends JFrame {
 		JButton btnNewButton_1 = new JButton("Continuar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Tela_jogo.Continuar =1;
+				
+
+				
+				//Tela_jogo.enable();
+				
+				Tela_jogo.Continuar =1; // PASSA PARA A TELA JOGO QUE É UMA OPCAO CONTINUAR
 				String codigo = Integer.toString(jg.getCod_jogador());
 				Tela_jogo.ListaSalvo = HistoricoDAO.PegarSalvo(codigo);
 				//Tela_jogo.ListaSalvo = HistoricoDAO.LerUtilmaJogada(codigo);
-				
+				//Tela_jogo.MaquinaLista = HistoricoDAO.PegarSalvo(codigo);
 				//LerUtilmaJogada
 				cj.listartop3();
 				// NA TELA JOGO MOSTRA QUAL É O JOGADOR
@@ -180,7 +178,7 @@ public class Tela_inicial extends JFrame {
 				 dificu = String.valueOf(comboBox.getSelectedItem()); // SELECIONA A DIFICULDADE
 					Tela_jogo.jogador = jg;
 					Tela_jogo.dificuldade = dificu;
-				Tela_jogo.setVisible(true); // ABRE A TELA JOGO
+					Tela_jogo.setVisible(true); // ABRE A TELA JOGO
 				cj.pegaDificuldade(dificu);
 				ControleJogo.dificuldadee = dificu;
 				//Tela_jogo.CodigoJogador = Integer.parseInt(txt_jogador.getText());
@@ -195,6 +193,7 @@ public class Tela_inicial extends JFrame {
 		JButton btn_sair = new JButton("SAIR");
 		btn_sair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+			iniciocontrole.sair();
 				Tela_login tela = new Tela_login();
 				dispose();
 				tela.setVisible(true);
@@ -224,6 +223,27 @@ public class Tela_inicial extends JFrame {
 		});
 		btnpontuacao.setBounds(419, 145, 27, 23);
 		contentPane.add(btnpontuacao);
+		
+		JButton btnNewButton_2 = new JButton("Perfil");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("teste "+jg);
+				
+				Tela_Perfil.lblpontuacao.setText(Integer.toString(jg.getPontuacao()));
+				Tela_Perfil.lbljogador.setText(jg.getNome());
+				Tela_Perfil.txt_jogador.setText(jg.getNome());
+				Tela_Perfil.txt_idade.setText(jg.getIdade());
+				Tela_Perfil.txt_email.setText(jg.getEmail());
+				
+				tela_perfil.jg = jg;
+				tela_perfil.setVisible(true);
+				
+				dispose();
+				
+			}
+		});
+		btnNewButton_2.setBounds(50, 213, 89, 23);
+		contentPane.add(btnNewButton_2);
 
 		
 		comboBox.addItem("Facil");
