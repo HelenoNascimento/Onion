@@ -144,7 +144,8 @@ public class Tela_jogo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		btn1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {		
+			public void actionPerformed(ActionEvent e) {	
+				//controle.tocarSom("01");
 				controlaVezJogador++;
 				contadorVez++;
 				toca();
@@ -195,6 +196,7 @@ public class Tela_jogo extends JFrame {
 		contentPane.add(btn1);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//controle.tocarSom("02");
 				controlaVezJogador++;
 				contadorVez++;
 				toca();
@@ -238,6 +240,7 @@ public class Tela_jogo extends JFrame {
 		contentPane.add(btn2);
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//controle.tocarSom("03");
 				controlaVezJogador++;
 				contadorVez++;
 				toca();
@@ -282,6 +285,7 @@ public class Tela_jogo extends JFrame {
 		contentPane.add(btn3);
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//controle.tocarSom("04");
 				controlaVezJogador++;
 				contadorVez++;
 				toca();
@@ -368,11 +372,11 @@ public class Tela_jogo extends JFrame {
 		lblSuaVez.setBounds(22, 271, 140, 24);
 		contentPane.add(lblSuaVez);
 		lblJogador.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblJogador.setBounds(45, 12, 82, 31);
+		lblJogador.setBounds(30, 11, 82, 31);
 		
 		contentPane.add(lblJogador);
 		lblqualjogador.setFont(new Font("Verdana", Font.PLAIN, 15));
-		lblqualjogador.setBounds(122, 11, 111, 33);
+		lblqualjogador.setBounds(95, 11, 111, 33);
 		
 		contentPane.add(lblqualjogador);
 		lblqualdificuldade.setFont(new Font("Verdana", Font.PLAIN, 15));
@@ -519,7 +523,7 @@ public class Tela_jogo extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				controle.Somvoltar();
 				sair();
 				dispose();
 			}
@@ -572,7 +576,8 @@ public void Pisca_Botoes(JButton e) {
          
             e.setBackground(Color.WHITE);
             Thread.sleep(controle.Dificuldade()); //pega o tempo que o jogador escolheu conforme a dificuldade
-    
+           // controle.tocarSom(Integer.toString(e));
+            
             e.setBackground(c);
 
         } catch (InterruptedException P) {
@@ -615,6 +620,7 @@ public void Pisca_Botoes(JButton e) {
 		                            break;
 		                        } else {
 		                        	Pisca_Botoes(botoes[(MaquinaLista.get(i))]);
+
 		                        }
 		                        Thread.sleep(controle.Dificuldade());
 		                       
@@ -655,6 +661,7 @@ public void Pisca_Botoes(JButton e) {
 		                        } else {
 		                           
 		                        	Pisca_Botoes(botoes[(lista.get(i))]);
+		                        	
 		                        }
 		                        Thread.sleep(controle.Dificuldade());
 		                       

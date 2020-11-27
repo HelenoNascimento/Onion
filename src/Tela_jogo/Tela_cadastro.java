@@ -1,6 +1,8 @@
 package Tela_jogo;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -9,8 +11,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -18,10 +18,9 @@ import javax.swing.border.EmptyBorder;
 
 import Controler.ConfiguracaoControle;
 import Controler.ControleJogador;
+import Controler.ControleJogo;
 import br.edu.facear.dao.JogadorDAO;
 import br.edu.facear.entity.Jogador;
-import java.awt.Font;
-import java.awt.Color;
 
 public class Tela_cadastro extends JFrame {
 	//Tela_login telalogin = new Tela_login();
@@ -36,6 +35,7 @@ public class Tela_cadastro extends JFrame {
 	JogadorDAO jogadordao = new JogadorDAO();
 	ControleJogador controlejg = new ControleJogador();
 	ConfiguracaoControle confcontrole = new ConfiguracaoControle();
+	ControleJogo controle = new ControleJogo();
 	private JTextField txt_senha1;
 	private JTextField txt_senha2;
 	
@@ -182,7 +182,7 @@ public class Tela_cadastro extends JFrame {
 		bnt_voltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Tela_login tela = new Tela_login();
-				
+				controle.Somvoltar();
 				dispose();
 				tela.setVisible(true);
 				

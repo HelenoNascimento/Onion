@@ -1,0 +1,17 @@
+[33m4d4192d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m reparado a maioria dos bug, colocado imagem, som do faustao, arrumado o top3, deixado um pouco mais bonito, aumentado a velocidade dos jogos
+[33mfb3dca1[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m adionado tela Pontos e atualizado tela de historico
+[33m4f9d032[m Adicionado tela basica de historico Tabela
+[33m5499597[m Criar o top3, e colocado na tela do jogo
+[33m316bbfd[m Foi adicionado pontuacao nas jogadas/ feito a parte de jogar sem cadastro
+[33m71a227d[m Termiado tela login, corrigido botao salvar/ continuar, Arrumado tela cadastro,e gerador de pasta
+[33m7ab16de[m feito a tela longin, Feito parcialmente metodo de logar
+[33mcc9d785[m adicionado metodo para criar as pastas/ e adicionado um gerador de codigo de historico altomatico
+[33m24fd48c[m adicionado botao de repetir maior sequencia/ repetir a ultima sequencia, salvando o historico
+[33ma322e05[m adicionado as vidas,e qual jogador esta jogando
+[33m25ed16c[m adicionado funcao listar jogadores (basico)
+[33m20cc387[m salvando historico (basico)
+[33mfc9a01c[m adicionado dificuldade (basico) no jogo
+[33ma956b38[m funcionado os botoes de pisca/ vez de jogador/ vez da maquina
+[33m6975637[m teste
+[33m474944a[m Projeto inicial upado
+[33mb55309c[m Initial commit

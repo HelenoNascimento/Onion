@@ -3,13 +3,18 @@ package Controler;
 import java.applet.Applet;
 import java.applet.AudioClip;
 import java.awt.Color;
-import java.awt.Image;
+import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import javax.swing.ImageIcon;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 
 import Tela_jogo.Tela_jogo;
@@ -229,18 +234,86 @@ public class ControleJogo {
 				JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
 			}
 			
+		
+			Clip clip = null;
+			/*public void carregarSom(String music) {
+
+				AudioInputStream sound = null;
+				
+				try {
+					
+					sound = AudioSystem.getAudioInputStream(getClass().getResource("/Arquivos/errou.wav"));
+				
+				} catch (UnsupportedAudioFileException e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "problema no som", "sound", JOptionPane.INFORMATION_MESSAGE);
+				} catch (IOException e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "problema no som", "sound", JOptionPane.INFORMATION_MESSAGE);
+				}
+				
+				DataLine.Info info = new DataLine.Info(Clip.class, sound.getFormat());
+				
+				
+				try {
+					
+					clip = (Clip) AudioSystem.getLine(info);
+				
+				} catch (LineUnavailableException e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "problema no som", "clip", JOptionPane.INFORMATION_MESSAGE);
+				}
+				try {
+					
+					clip.open(sound);
+				
+				} catch (LineUnavailableException e) {
+					JOptionPane.showMessageDialog(null, "problema no som", "clip_open", JOptionPane.INFORMATION_MESSAGE);
+					e.printStackTrace();
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(null, "problema no som", "clip_open", JOptionPane.INFORMATION_MESSAGE);
+					e.printStackTrace();
+				}
+			}*/
 			public void  tocarErrou(){
-				URL url = getClass().getResource("/Arquivos/errou.wav");
+			URL url = getClass().getResource("/Arquivos/errou.wav");
+				AudioClip audio = Applet.newAudioClip(url);
+				audio.play();
+				//clip.start();
+				
+			}
+			
+			public void tocarSom(String num) {
+				
+				URL url = getClass().getResource("/Arquivos/"+num+".wav");
+				AudioClip audio = Applet.newAudioClip(url);
+				audio.play();
+
+			}
+			
+			public void Somvoltar() {
+				URL url = getClass().getResource("/Arquivos/voltar.wav");
+				AudioClip audio = Applet.newAudioClip(url);
+				audio.play();
+			}
+			public void SomLogin() {
+				URL url = getClass().getResource("/Arquivos/somLogin.wav");
 				AudioClip audio = Applet.newAudioClip(url);
 				audio.play();
 				
 			}
+			public void PararSom() {
+				URL url = getClass().getResource("/Arquivos/somLogin.wav");
+				AudioClip audio = Applet.newAudioClip(url);
+				audio.stop();
+			}
 			
 			public void tocarmeu() {
 				jatoco++;
+			
 				if(jatoco ==1) {
-					URL url = getClass().getResource("/Arquivos/porraameu.wav");
-					AudioClip audio = Applet.newAudioClip(url);
+				URL url = getClass().getResource("/Arquivos/porraameu.wav");
+				AudioClip audio = Applet.newAudioClip(url);
 					audio.play();
 				}if(jatoco == 5) {
 					URL url = getClass().getResource("/Arquivos/porraameu.wav");

@@ -57,7 +57,7 @@ public class Tela_login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-
+					
 				//	Tela_login window = new Tela_login();
 					//window.setVisible(true);
 					
@@ -75,6 +75,7 @@ public class Tela_login extends JFrame {
 	 */
 	public Tela_login() {
 		//teste();
+		//controle.SomLogin();
 		teste1();
 		conficotrole.CriarPasta();
 		//conficotrole.CriarConfig();
@@ -99,6 +100,7 @@ public class Tela_login extends JFrame {
 		JButton btn_Entrar = new JButton("Entrar");
 		btn_Entrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+			//	controle.PararSom();
 				//frame.setVisible(false);
 				//jg = jgdao.Logar(txt_usuario.getText());
 				jg = controlejg.Logar(txt_usuario.getText(), txt_senha.getText());
@@ -134,6 +136,7 @@ public class Tela_login extends JFrame {
 		btn_cadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//frame.setVisible(false);
+				//controle.PararSom();
 				dispose();
 				telacadastro.setVisible(true);
 				
@@ -143,9 +146,10 @@ public class Tela_login extends JFrame {
 		btn_cadastrar.setBackground(Color.WHITE);
 		contentPane.add(btn_cadastrar);
 		
-		JButton btn_jogarSemCadastro = new JButton("Jogar Sem Cadastro");
+		JButton btn_jogarSemCadastro =  new JButton("Jogar Sem Cadastro");
 		btn_jogarSemCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				//controle.PararSom();
 				dispose();
 				jg = controlejg.JogarSemCadastro();
 				telaInicial.jg = jg;
@@ -154,7 +158,7 @@ public class Tela_login extends JFrame {
 			}
 		});
 		btn_jogarSemCadastro.setForeground(new Color(255, 255, 255));
-		btn_jogarSemCadastro.setFont(new Font("Verdana", Font.PLAIN, 15));
+		btn_jogarSemCadastro.setFont(new Font("Verdana", Font.BOLD, 15));
 		btn_jogarSemCadastro.setBounds(310, 228, 206, 54);
 		btn_jogarSemCadastro.setBackground(new Color(255, 0, 0));
 		contentPane.add(btn_jogarSemCadastro);

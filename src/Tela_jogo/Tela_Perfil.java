@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import br.edu.facear.bo.JogadorBO;
 import br.edu.facear.entity.Jogador;
+import java.awt.Color;
 
 public class Tela_Perfil extends JFrame {
 
@@ -55,9 +56,10 @@ public class Tela_Perfil extends JFrame {
 	public Tela_Perfil() {
 	//	carregar();
 		System.out.println("aaaa: "+jg);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 537, 350);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -97,6 +99,8 @@ public class Tela_Perfil extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setFont(new Font("Verdana", Font.BOLD, 15));
+		btnVoltar.setBackground(Color.RED);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Tela_inicial inicial = new Tela_inicial();
@@ -104,7 +108,7 @@ public class Tela_Perfil extends JFrame {
 				dispose();
 			}
 		});
-		btnVoltar.setBounds(133, 264, 89, 23);
+		btnVoltar.setBounds(427, 244, 84, 59);
 		contentPane.add(btnVoltar);
 		
 		txt_jogador = new JTextField();
@@ -162,10 +166,6 @@ public class Tela_Perfil extends JFrame {
 		lblpontuacao.setFont(new Font("Verdana", Font.PLAIN, 15));
 		lblpontuacao.setBounds(376, 45, 79, 23);
 		contentPane.add(lblpontuacao);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(22, 234, 89, 23);
-		contentPane.add(btnNewButton_1);
 		System.out.println("aaaa: "+jg);
 	}
 

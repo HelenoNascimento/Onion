@@ -88,6 +88,7 @@ public class Tela_inicial extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 565, 369);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -115,18 +116,6 @@ public class Tela_inicial extends JFrame {
 		});
 		btn_jogar.setBounds(50, 58, 141, 42);
 		contentPane.add(btn_jogar);
-		
-		JButton btnJogadores = new JButton("Jogadores");
-		btnJogadores.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				// ABRE A TELA JOGADORES
-				Tela_jogadores.setVisible(true);
-			}
-			
-		});
-		btnJogadores.setBounds(50, 243, 141, 23);
-		contentPane.add(btnJogadores);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -146,6 +135,8 @@ public class Tela_inicial extends JFrame {
 		contentPane.add(lbljogador);
 		
 		JButton btnNewButton = new JButton("Historico");
+		btnNewButton.setFont(new Font("Verdana", Font.PLAIN, 15));
+		btnNewButton.setBackground(new Color(255, 255, 0));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println(jg);
@@ -154,7 +145,7 @@ public class Tela_inicial extends JFrame {
 				// txt_jogador.setText(Integer.toString(jg.getCod_jogador()));
 			}
 		});
-		btnNewButton.setBounds(50, 277, 141, 23);
+		btnNewButton.setBounds(50, 277, 141, 29);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Continuar");
@@ -193,6 +184,7 @@ public class Tela_inicial extends JFrame {
 		JButton btn_sair = new JButton("SAIR");
 		btn_sair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				cj.Somvoltar();
 			iniciocontrole.sair();
 				Tela_login tela = new Tela_login();
 				dispose();
@@ -225,6 +217,8 @@ public class Tela_inicial extends JFrame {
 		contentPane.add(btnpontuacao);
 		
 		JButton btnNewButton_2 = new JButton("Perfil");
+		btnNewButton_2.setFont(new Font("Verdana", Font.PLAIN, 15));
+		btnNewButton_2.setBackground(new Color(255, 140, 0));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("teste "+jg);
@@ -242,7 +236,7 @@ public class Tela_inicial extends JFrame {
 				
 			}
 		});
-		btnNewButton_2.setBounds(50, 213, 89, 23);
+		btnNewButton_2.setBounds(50, 235, 141, 29);
 		contentPane.add(btnNewButton_2);
 
 		
